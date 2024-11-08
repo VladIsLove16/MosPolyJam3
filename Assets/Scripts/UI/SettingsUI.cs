@@ -7,16 +7,17 @@ public class SettingsUI : MonoBehaviour
     [SerializeField]
     private AudioMixer audioMixer;
     [SerializeField]
-    private AudioClip MeowSound;
+    private AudioClip VolumeChangedSound;
     private bool isPlaing;
+    [SerializeField]
     private AudioSource audioSource;
     private Slider MusicVolumeSlider;
-    private Slider MeowingVolumeSlider;
+    //private Slider MeowingVolumeSlider;
     private Slider ButtonsVolumeSlider;
     private Button Close;
     
     const string MusicVolume = "MusicVolume";
-    const string MeowingVolume = "MeowingVolume";
+    //const string MeowingVolume = "MeowingVolume";
     const string ButtonsVolume = "ButtonsVolume";
     private void Awake()
     {
@@ -27,8 +28,8 @@ public class SettingsUI : MonoBehaviour
         MusicVolumeSlider = root.Q("Music") as Slider;
         MusicVolumeSlider.RegisterValueChangedCallback(evt => VolumeChange(evt.newValue, MusicVolume));
 
-        MeowingVolumeSlider = root.Q("Meowing") as Slider;
-        MeowingVolumeSlider.RegisterValueChangedCallback(evt => VolumeChange(evt.newValue, MeowingVolume));
+        //MeowingVolumeSlider = root.Q("Meowing") as Slider;
+        //MeowingVolumeSlider.RegisterValueChangedCallback(evt => VolumeChange(evt.newValue, MeowingVolume));
 
         ButtonsVolumeSlider = root.Q("Buttons") as Slider;
         ButtonsVolumeSlider.RegisterValueChangedCallback(evt => VolumeChange(evt.newValue, ButtonsVolume));
@@ -52,10 +53,10 @@ public class SettingsUI : MonoBehaviour
     {
         ButtonsVolumeSlider.value = PlayerPrefs.GetFloat(ButtonsVolume, 0.5f);
         MusicVolumeSlider.value = PlayerPrefs.GetFloat(MusicVolume, 0.5f);
-        MeowingVolumeSlider.value = PlayerPrefs.GetFloat(MeowingVolume, 0.5f);
+        //MeowingVolumeSlider.value = PlayerPrefs.GetFloat(MeowingVolume, 0.5f);
 
         audioMixer.SetFloat(MusicVolume, PlayerPrefs.GetFloat(MusicVolume, 0.5f));
-        audioMixer.SetFloat(MeowingVolume, PlayerPrefs.GetFloat(MeowingVolume, 0.5f));
+        //audioMixer.SetFloat(MeowingVolume, PlayerPrefs.GetFloat(MeowingVolume, 0.5f));
         audioMixer.SetFloat(ButtonsVolume, PlayerPrefs.GetFloat(ButtonsVolume, 0.5f));
 
         Debug.Log(PlayerPrefs.GetFloat(ButtonsVolume, 1f) + " " + PlayerPrefs.GetFloat(MusicVolume, 1f) + " " + PlayerPrefs.GetFloat(ButtonsVolume, 1f));
@@ -70,13 +71,21 @@ public class SettingsUI : MonoBehaviour
         PlayerPrefs.SetFloat(type, value);
         switch (type)
         {
-            case MeowingVolume:
+            default:
+                if(audioSource!=null)
                     if (!audioSource.isPlaying)
                     {
-                        audioSource.clip = MeowSound;
+                        audioSource.clip = VolumeChangedSound;
                         audioSource.Play();
                     }
                 break;
+                //case MeowingVolume:
+                //        if (!audioSource.isPlaying)
+                //        {
+                //            audioSource.clip = MeowSound;
+                //            audioSource.Play();
+                //        }
+                //    break;
         }
     }
 }
