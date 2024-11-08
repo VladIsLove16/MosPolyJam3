@@ -1,0 +1,51 @@
+.closebtn {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/Close.png?fileID=21300000&guid=a0dedbc3bbe4cbd4abafc15de971cb00&type=3#Close");
+    background-color: rgba(188, 188, 188, 0);
+}
+
+.closebtn:hover {
+    background-image: url("project://database/Assets/Sprites/UI/Buttons/CloseHover.png?fileID=21300000&guid=8003d52efd9ca7f42939ba636047cc0e&type=3#CloseHover");
+}
+
+.btn {
+    background-image: url('flex');
+    background-color: rgba(255, 255, 255, 0);
+    width: 359px;
+    height: 67px;
+    display: flex;
+    -unity-background-scale-mode: stretch-to-fill;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.btn:hover {
+    background-image: url('flex');
+}
+
+.btn:active {
+    background-image: url('flex');
+}
+
+.mainmenubtn {
+    background-image: url('flex');
+    background-color: rgba(255, 255, 255, 0);
+    width: 253px;
+    height: 67px;
+    display: flex;
+    -unity-background-scale-mode: stretch-to-fill;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    margin-bottom: 39px;
+}
+
+.mainmenubtn:hover {
+    background-image: url('flex');
+}
+
+.mainmenubtn:active {
+    background-image: url('flex');
+}

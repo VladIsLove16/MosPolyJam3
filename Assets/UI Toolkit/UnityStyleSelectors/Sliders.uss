@@ -1,0 +1,56 @@
+.Slider .unity-base-slider__dragger-border {
+    background-image: url('project://database/Assets/Sprites/new/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8/%D0%A1%D0%B2%D0%B8%D1%82%D1%87%D0%B5%D1%80%20%D0%B6%D0%B5%D0%BB%D1%82%D1%8B%D0%B9.png?fileID=21300000&guid=b57cde04e1c037a4496f4a3ffeba45d2&type=3#Свитчер желтый');
+}
+
+.Slider {
+    flex-direction: column;
+    -unity-text-align: upper-center;
+    display: flex;
+    flex-grow: 1;
+}
+
+.Slider .unity-base-slider__tracker {
+    background-image: none;
+    display: flex;
+    width: auto;
+    height: 37px;
+    background-color: rgb(31, 135, 228);
+    align-self: stretch;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-background-image-tint-color: rgb(196, 196, 196);
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+}
+
+.Slider .unity-base-slider__dragger {
+    background-image: url("project://database/Assets/Sprites/Dragger.png?fileID=21300000&guid=aa87bf51c6987614197befe25176c626&type=3#Dragger");
+    height: 53px;
+    width: 53px;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+.Slider .unity-base-slider__drag-container {
+    background-image: none;
+    flex-direction: column;
+    display: flex;
+    align-self: flex-start;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    align-items: auto;
+    margin-top: 0;
+    margin-right: 20px;
+    margin-bottom: 0;
+    margin-left: 20px;
+}

@@ -1,0 +1,10 @@
+.text {
+    font-size: 44px;
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Airfool.otf?fileID=12800000&guid=181d4d7e257c9b849a11feea52a49816&type=3#Airfool");
+}
+
+.text-color-white {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
