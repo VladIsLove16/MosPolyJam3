@@ -29,7 +29,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""damageType"": ""Value"",
                     ""id"": ""7d9e6ebc-5e20-4a55-8200-4bd21aa16763"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",

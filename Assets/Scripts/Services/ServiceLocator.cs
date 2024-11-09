@@ -44,7 +44,7 @@ public class ServiceLocator : IService
         if (_services.ContainsKey(key))
         {
             Debug.LogError(
-                $"Attempted to register service of type {key} which is already registered with the {GetType().Name}.");
+                $"Attempted to register service of damageType {key} which is already registered with the {GetType().Name}.");
             return;
         }
 
@@ -61,7 +61,7 @@ public class ServiceLocator : IService
         if (!_services.ContainsKey(key))
         {
             Debug.LogError(
-                $"Attempted to unregister service of type {key} which is not registered with the {GetType().Name}.");
+                $"Attempted to unregister service of damageType {key} which is not registered with the {GetType().Name}.");
             return;
         }
 
