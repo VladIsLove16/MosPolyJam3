@@ -1,0 +1,5 @@
+.amount {
+    font-size: 24px;
+    -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Airfool.otf?fileID=12800000&guid=181d4d7e257c9b849a11feea52a49816&type=3#Airfool");
+    color: rgb(0, 0, 0);
+}

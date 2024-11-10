@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-public class Weapon : MonoBehaviour
+public class DamageApplier : MonoBehaviour
 {
     public Dictionary<DamageType, DamageComponent> _damageComponents = new();
     public int _damageComponentsCount;
@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     {
         _damageComponentsCount = _damageComponents.Count;
     }
-    public void Fire(IDamageable damageable)
+    public void ApplyDamage(IDamageable damageable)
     {
         foreach (var damageComponent in _damageComponents.Values)
         {
@@ -78,9 +78,5 @@ public class Weapon : MonoBehaviour
                 break ;
         }
         return damageComponent;
-    }
-    public virtual void Shoot()
-    {
-        Debug.Log("weapon shoot");
     }
 }

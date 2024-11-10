@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/InventoryUSS.uss?fileID=7433441132597879392&amp;guid=f9316721a7756f14e80b452dc153eaa4&amp;type=3#InventoryUSS" />
+    <ui:VisualElement name="Background" style="flex-grow: 1;">
+        <ui:GroupBox name="InventoryListParent" style="flex-direction: row; justify-content: space-between; width: 354px; height: 140px;">
+            <ui:VisualElement name="InvetoryItem">
+                <ui:VisualElement name="Icon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/Close.png?fileID=21300000&amp;guid=a0dedbc3bbe4cbd4abafc15de971cb00&amp;type=3#Close&quot;); width: 80px; height: 80px; min-width: 40px; min-height: 40px; max-width: 120px; max-height: 120px;" />
+                <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" class="amount" style="-unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="InvetoryItem">
+                <ui:VisualElement name="Icon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/Close.png?fileID=21300000&amp;guid=a0dedbc3bbe4cbd4abafc15de971cb00&amp;type=3#Close&quot;); width: 80px; height: 80px; min-width: 40px; min-height: 40px; max-width: 120px; max-height: 120px;" />
+                <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" class="amount" style="-unity-text-align: upper-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="InvetoryItem">
+                <ui:VisualElement name="Icon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Buttons/Close.png?fileID=21300000&amp;guid=a0dedbc3bbe4cbd4abafc15de971cb00&amp;type=3#Close&quot;); width: 80px; height: 80px; min-width: 40px; min-height: 40px; max-width: 120px; max-height: 120px;" />
+                <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" class="amount" style="-unity-text-align: upper-center;" />
+            </ui:VisualElement>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

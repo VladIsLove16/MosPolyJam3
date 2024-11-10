@@ -26,14 +26,14 @@ public class DamageComponent : ScriptableObject
         return modifiedDamage;
     }
 
-    public void AddAdditiveModifier(float value)
+    public void AddAdditiveModifier(int value)
     {
        additiveModifiers.Add(value);
        float dmg = CalculateDamage();
         Debug.Log("AddAdditiveModifier To " + damageType  + "add" + additiveModifiers.Count);
         Debug.Log("dmg" + dmg);
     }
-    public void AddMultiplicativeModifier(float value)
+    public void AddMultiplicativeModifier(int value)
     {
         multiplicativeModifiers.Add(value);
         CalculateDamage();

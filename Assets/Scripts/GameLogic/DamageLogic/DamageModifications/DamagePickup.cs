@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 [RequireComponent (typeof(Collider2D))]
 
-[CreateAssetMenu(fileName = "DamagePickup", menuName = "Damage/DamagePickup")]
 public class DamagePickup : MonoBehaviour
 {
     public DamageModification damageModification; // Модификация урона, которую игрок может подобрать
@@ -12,7 +11,7 @@ public class DamagePickup : MonoBehaviour
         Player player= other.GetComponent<Player>();
         if (player != null)
         {
-            Weapon  playerWeapon = player.GetWeapon();
+            DamageApplier  playerWeapon = player.GetDamageApplier();
             damageModification.ApplyModification(playerWeapon);
             Destroy(gameObject);
         }

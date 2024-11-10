@@ -9,12 +9,12 @@ public class DamageModification : ScriptableObject
     public class Modifier
     {
         public ModifierType modifierType;
-        public float modifierAmount;
+        public int modifierAmount;
         public DamageType damageType;
     }
     public Rarity rarity;
     public float spawnChance; // Вероятность появления модификации
-    public void ApplyModification(Weapon weapon)
+    public void ApplyModification(DamageApplier weapon)
     {
         foreach (Modifier modifier in modifiers)
         {

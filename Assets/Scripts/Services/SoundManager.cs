@@ -17,7 +17,8 @@ using UnityEngine.Audio;
 public static class SoundManager {
 
     public enum Sound {
-        PlayerAttack,
+        PlayerShootPistol,
+        PlayerShootShotgun,
         PlayerJump,
         PlayerMove,
         PlayerGetDamaged,
