@@ -7,8 +7,11 @@ public class EnemySpawner : MonoBehaviour, IService
     public float StartDelay = 1f;
     public SpawnPoint[] dynamicspawnPoints; 
     public SpawnPoint[] hardspawnPoints;  // Точки спавна
-    public GameObject[] itemPrefabs;  // Префаб для спавна предмета
     public float Radius;
+    [SerializeField]
+    public CharacterCreator CharacterCreator;
+    [SerializeField]
+    public GameObject EnemysParent;
 
     // Метод, который будет вызываться для спавна каждого предмета
     public virtual void SpawnItem(SpawnPoint spawnPoint)
@@ -51,7 +54,8 @@ public class EnemySpawner : MonoBehaviour, IService
                 return null;
             }
         }
-        GameObject spawnedItem = Instantiate(itemPrefabs[Random.Range(0, itemPrefabs.Length)], spawnPoint.transform.position, Quaternion.identity);
+        GameObject newCharacter = CharacterCreator.GetNewCharacter();
+       GameObject spawnedItem = Instantiate(newCharacter, spawnPoint.transform.position, Quaternion.identity, EnemysParent.transform);
         itemObject = spawnedItem.GetComponent<ISpawnObject>();
         return spawnedItem;
     }

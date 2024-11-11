@@ -103,6 +103,7 @@ public class MainMenuUI : MonoBehaviour
     private void OnPlayClicked()
     {
         Debug.Log("play clicke");
+        ServiceLocator.Current.Get<EventBus>().Invoke(new GameStartedEvent());
         SceneLoader.Load(SceneLoader.Scene.Level1);
     }
 }

@@ -29,8 +29,9 @@ public class PoisonDamageComponent : DamageComponent
         damage = CalculateDamage();
         ApplyPoisonEffect(damageable);
     }
-    public void ResetStats()
+    public override void ResetStats()
     {
+        base.ResetStats();
         duration = 2f;
         tickInterval = 0.5f;
         damage = 0.5f;

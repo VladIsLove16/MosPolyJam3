@@ -14,6 +14,22 @@ public class DamageComponent : ScriptableObject
     {
         CalculateDamage();
     }
+    private void Awake()
+    {
+        ServiceLocator.Current.Get<EventBus>().Subscribe<GameStartedEvent>(OnGameStarted);
+    }
+
+    private void OnGameStarted(GameStartedEvent @event)
+    {
+        ResetStats();
+    }
+    public virtual void ResetStats()
+    {
+        additiveModifiers.Clear();
+        multiplicativeModifiers.Clear();
+        CalculateDamage();
+    }
+
     public DamageComponent(DamageType damageType) { this.damageType = damageType; CalculateDamage(); }
 
     protected float CalculateDamage()

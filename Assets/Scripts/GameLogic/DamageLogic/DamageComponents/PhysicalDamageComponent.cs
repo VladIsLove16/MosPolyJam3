@@ -7,8 +7,9 @@ public class PhysicalDamageComponent : DamageComponent
     {
         damageType = DamageType.physical;
     }
-    public void ResetStats()
+    public override void ResetStats()
     {
+        base.ResetStats();
         baseDamage = 2f;
     }
 }

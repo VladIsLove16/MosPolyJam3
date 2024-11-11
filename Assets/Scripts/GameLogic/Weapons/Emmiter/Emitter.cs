@@ -8,8 +8,11 @@ public class Emitter : MonoBehaviour
     GameObject bulletpf;
     [SerializeField]
     UnityEngine.Transform spawnPoint;
-    [SerializeField]
     UnityEngine.Transform BulletParent;
+    private void Awake()
+    {
+        BulletParent = ServiceLocator.Current.Get<BulletParent>().transform;
+    }
 
     public void Emmit(GameObject pf, Vector2 from, Vector2 target, Quaternion rotation, UnityEngine.Transform parent, float speed, WeaponInfo weaponInfo)
     {

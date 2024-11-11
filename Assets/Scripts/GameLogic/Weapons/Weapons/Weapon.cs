@@ -49,6 +49,14 @@ public class Weapon : MonoBehaviour
     {
         if (rotateToTarget)
         {
+            if(target.x>transform.position.x)
+            {
+                transform.localScale = new Vector3(-1, -1f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1f);
+            }
             Vector2 direction = target - (Vector2)Host.position;
             Vector2 position = direction.normalized * radius;
             transform.localPosition = position;

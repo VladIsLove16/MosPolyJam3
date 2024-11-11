@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     public DateTime lastTimeSetNewPatrolTarget;
 
     private Vector2 patrolTarget;
-    private List<Vector2> patrolpoints;
+    private List<Vector2> patrolpoints = new();
     private bool randomPatrolPoints = false;
     public int randomPatrolPointschance = 10;
     private Vector2 lastSeenPlayerPosition;
@@ -29,11 +29,17 @@ public class EnemyAI : MonoBehaviour
     protected virtual void Start()
     {
         enemyMover = GetComponent<EnemyMover>();
+        weapon = GetComponentInChildren<Weapon>();
+        player = ServiceLocator.Current.Get<Player>();
+
+        InitPatrolTargetSelection();
         SetNewPatrolTarget();
         ChangeState(new PatrolState());
-        weapon  = GetComponentInChildren<Weapon>();
-        player = ServiceLocator.Current.Get<Player>();
-        if(randomPatrolPointschance>UnityEngine.Random.Range(0,100))
+    }
+
+    private void InitPatrolTargetSelection()
+    {
+        if (randomPatrolPointschance > UnityEngine.Random.Range(0, 100))
         {
             randomPatrolPoints = true;
         }
@@ -50,10 +56,11 @@ public class EnemyAI : MonoBehaviour
     private void AddPotentialPoint(Vector2 potentialTarge)
     {
         NavMeshHit hit;
-        if
-        (NavMesh.SamplePosition(potentialTarge, out hit, 2f, NavMesh.AllAreas))
+        Debug.Log("AddPotentialPoint "+ potentialTarge);
+        if(NavMesh.SamplePosition(potentialTarge, out hit, 2f, NavMesh.AllAreas))
         {
             patrolpoints.Add(hit.position);
+            Debug.Log("AddPotentialPoint TRUE");
         }
     }
 
@@ -141,7 +148,8 @@ public class EnemyAI : MonoBehaviour
 
     private void SetTarget(List<Vector2> patrolpoints)
     {
-        Vector2 target = patrolpoints[UnityEngine.Random.Range(0, patrolpoints.Count)];
+        int count = patrolpoints.Count;
+        Vector2 target = patrolpoints[UnityEngine.Random.Range(0, count)];
         SetTarget(target);
     }
 

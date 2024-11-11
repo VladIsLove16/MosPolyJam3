@@ -50,4 +50,5 @@ public class EventBus : IService
             Debug.LogErrorFormat("Trying to unsubscribe for not existing key! {0} ", key);
         }
     }
+
 }
