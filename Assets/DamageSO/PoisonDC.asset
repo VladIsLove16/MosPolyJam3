@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5829cd6c71d7974e808709abf129ee5, type: 3}
   m_Name: PoisonDC
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: fea9c4c034d6c6f438287786a3d5327a, type: 3}
   baseDamage: 0
   damageType: 1
   CalculatedDamage: 0

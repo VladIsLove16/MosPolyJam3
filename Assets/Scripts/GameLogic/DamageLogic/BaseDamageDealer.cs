@@ -7,10 +7,13 @@ public class BaseDamageDealer : MonoBehaviour
     {
         if (damageApplier == null)
             return;
-        if (collision is IDamageable damageable)
+
+        HealthComponent healthComponent = collision.gameObject.GetComponent<HealthComponent>();
+        if (healthComponent !=null)
         {
-            damageApplier.ApplyDamage(damageable);
+            damageApplier.ApplyDamage(healthComponent);
         }
+        Destroy(gameObject);
     }
     public void SetDamageApplier(DamageApplier damageApplier)
     {

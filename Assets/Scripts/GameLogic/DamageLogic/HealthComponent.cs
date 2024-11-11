@@ -1,19 +1,33 @@
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
-
+[RequireComponent(typeof(Collider2D))]
 public class HealthComponent : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected int maxHealth = 100;
-    protected float currentHealth;
+    [SerializeField] public int maxHealth = 100;
+    [SerializeField] protected float currentHealth;
     [SerializeField] protected float invulnerabilityTime;
     protected float lastTimeDamaged;
     [SerializeField]
     GetHitParticleEffect GetHitParticleEffect;
-    private bool dead = false;
+    public bool dead = false;
     private Animator anim;
+    public Action healthChanged;
+        public float CurrentHealth
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            currentHealth = value;
+            healthChanged?.Invoke();
+        }
+    }
     protected virtual void Start()
     {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
         anim = GetComponent<Animator>();
         GetHitParticleEffect = GetComponent<GetHitParticleEffect>();
     }
@@ -66,7 +80,8 @@ public class HealthComponent : MonoBehaviour, IDamageable
 
     protected virtual void ApplyDamage(float damage)
     {
-        currentHealth -= damage;
+        CurrentHealth -= damage;
+        healthChanged?.Invoke();
         Debug.Log($"Сущность {gameObject.name} получила урон: " + damage);
         if (currentHealth <= 0)
         {
@@ -75,12 +90,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
     }
     protected virtual void Die()
     {
-        //gameObject.SetActive(false);
-        dead = true;
+        gameObject.SetActive(false);
     }
 
     void IDamageable.ApplyDamage(float damage)
     {
-        TakeDamage(damage);
+        TakeDamage((float)damage);
     }
 }

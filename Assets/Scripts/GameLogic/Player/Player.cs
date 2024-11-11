@@ -13,6 +13,7 @@ public class Player : MonoBehaviour , IService
     Inventory inventory;
     InventoryFabric inventoryFabric;
     private int weaponNum;
+    HealthComponent healthComponent;
     private void Awake()
     {
         inventory = ServiceLocator.Current.Get<Inventory>();
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour , IService
             weapon.GetEmmiter().SetDamageApplier(damageApplier);
         }
         SwitchWeaponByType(Weapons[weaponNum].GetType());
+        healthComponent= GetComponent<HealthComponent>();
     }
 
     internal Inventory GetInventory()
@@ -62,6 +64,10 @@ public class Player : MonoBehaviour , IService
     {
         CurrentWeapon =  weapon;
         weapon.gameObject.SetActive(true);
+    }
+    public Weapon GetWeapon()
+    {
+        return CurrentWeapon;
     }
     private void HideAllWeapon()
     {

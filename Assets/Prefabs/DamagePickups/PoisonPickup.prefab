@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2381278621673752284}
   - component: {fileID: 7245031618746636858}
   m_Layer: 0
-  m_Name: Square
+  m_Name: PoisonPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaeea03fb5437c74dba36247080190b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageModification: {fileID: 0}
+  damageModification: {fileID: 11400000, guid: 63c5aac7c0e2db94b946e6faaf0c37bc, type: 2}
 --- !u!61 &7245031618746636858
 BoxCollider2D:
   m_ObjectHideFlags: 0

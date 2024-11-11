@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class DamageApplier : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class DamageApplier : MonoBehaviour
     List<DamageComponent> _componentsListDebug = new List<DamageComponent>();
     [SerializeField ]
     List<DamageComponent> StartedDamageComponents = new List<DamageComponent>();
-    private void Start()
+    public Action<DamageComponent> DamageComponentUpdate;
+    private void Awake()
     {
         foreach(var damageComponent in StartedDamageComponents)
         {
@@ -35,7 +37,10 @@ public class DamageApplier : MonoBehaviour
         DamageComponent damageComponent = GetOrAddDamageComponent(type);
         return damageComponent;
     }
-
+    public List<DamageComponent> GetDamageComponentstList()
+    {
+        return _damageComponents.Values.ToList();
+    }
     private DamageComponent GetOrAddDamageComponent(DamageType type)
     {
         if (_damageComponents.ContainsKey(type))
@@ -55,7 +60,7 @@ public class DamageApplier : MonoBehaviour
     private void AddDamageComponent(DamageComponent damageComponent)
     {
         _damageComponents.Add(damageComponent.damageType, damageComponent);
-
+        DamageComponentUpdate?.Invoke(damageComponent);
         Debug.Log("(_damageComponents.added" + damageComponent.damageType.ToString());
         _componentsListDebug.Add(damageComponent);
     }

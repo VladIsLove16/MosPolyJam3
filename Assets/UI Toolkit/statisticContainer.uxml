@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:GroupBox name="statisticContainer" style="flex-direction: row;">
+        <ui:VisualElement name="icon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/Sprites/UI/Heart.png?fileID=21300000&amp;guid=168177d4657e12f48b9e6ab2970a371e&amp;type=3#Heart&quot;); width: 40px; height: 40px;" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="totalDamage" />
+    </ui:GroupBox>
+</ui:UXML>

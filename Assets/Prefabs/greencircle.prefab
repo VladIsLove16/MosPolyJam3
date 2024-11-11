@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6502831013774212978}
   - component: {fileID: 6141047604251688423}
-  m_Layer: 0
-  m_Name: bullet
+  m_Layer: 13
+  m_Name: greencircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 4a5507b8016c3d54bb00f295c63892b8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.12358022, g: 0.764151, b: 0.06848521, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

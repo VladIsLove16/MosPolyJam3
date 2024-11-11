@@ -20,6 +20,8 @@ MonoBehaviour:
   firerate: 0.5
   shotBulletAmount: 3
   bulletsInShop: 5
-  lifetime: 1
-  shootRadius: 2
+  shootRadius: 5
+  ScreenEdgeDestroy: 0
+  lifetime: 10
+  LifeTimeDestroy: 1
   spreadAngle: 3

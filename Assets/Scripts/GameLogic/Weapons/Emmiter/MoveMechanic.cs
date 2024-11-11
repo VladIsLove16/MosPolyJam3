@@ -16,6 +16,7 @@ public class MoveMechanic
         this.maxDistance = maxDistance;
         DistanceTraveled = 0f;
         rigidbody.gravityScale = 0;
+        rigidbody.mass = 0.01f;
     }
 
     public bool FixedUpdate()

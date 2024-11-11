@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="statisticContainer" src="project://database/Assets/UI%20Toolkit/statisticContainer.uxml?fileID=9197481963319205126&amp;guid=0e084632e9a9a8b40b9990a116b65d75&amp;type=3#statisticContainer" />
+    <ui:Instance template="statisticContainer" name="statisticContainer" />
+    <ui:Instance template="statisticContainer" name="statisticContainer" />
+    <ui:Instance template="statisticContainer" name="statisticContainer" />
+    <ui:Instance template="statisticContainer" name="statisticContainer" />
+</ui:UXML>

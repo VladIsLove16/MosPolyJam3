@@ -15,10 +15,15 @@ public class EnemyMover : MonoBehaviour
         NavMeshAgent.stoppingDistance = StoppingDistance;
     }
 
-    public void Move(Vector2 vector, float speed)
+    public void Move(Vector2 target, float speed)
     {
-        NavMeshAgent.SetDestination(vector);
+        NavMeshAgent.isStopped = false; 
+        NavMeshAgent.SetDestination(target);
         NavMeshAgent.speed = speed;
+    }
+    public void Stop()
+    {
+        NavMeshAgent.isStopped  = true;
     }
 
 }

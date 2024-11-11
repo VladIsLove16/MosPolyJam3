@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public IEnemyState currentState;
-    public Transform player;
+    private Player player;
     public float patrolSpeed = 2f;
     public float chaseSpeed = 5f;
     public float attackRange = 1f;
@@ -19,26 +19,32 @@ public class EnemyAI : MonoBehaviour
     private Vector2 lastSeenPlayerPosition;
     private EnemyMover enemyMover;
     private bool playerInSight;
+    Weapon weapon;
 
-    private void Start()
+    protected virtual void Start()
     {
         enemyMover = GetComponent<EnemyMover>();
         SetNewPatrolTarget();
         ChangeState(new PatrolState());
+        weapon  = GetComponentInChildren<Weapon>();
+        player = ServiceLocator.Current.Get<Player>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         currentState?.Update(this);
     }
 
-    public void ChangeState(IEnemyState newState)
+    public virtual void ChangeState(IEnemyState newState)
     {
         currentState?.Exit(this);
         currentState = newState;
         currentState.Enter(this);
     }
-
+    public EnemyMover GetEnemyMover()
+    {
+        return enemyMover;
+    }
     public void Patrol()
     {
         if (PatrolTargetChangedAlongTimeAgo())
@@ -98,8 +104,8 @@ public class EnemyAI : MonoBehaviour
 
     public void ChasePlayer()
     {
-        lastSeenPlayerPosition = player.position;
-        enemyMover.Move(player.position, chaseSpeed); // Используем метод Move для преследования
+        lastSeenPlayerPosition = player.transform. position;
+        enemyMover.Move(player .transform.position, chaseSpeed);
     }
 
     public void MoveToLastSeenPosition()
@@ -108,15 +114,15 @@ public class EnemyAI : MonoBehaviour
     }
     public void AttackPlayer()
     {
-        Debug.Log("Attacking player");
+        weapon.Shoot();
     }
     public bool CanSeePlayer()
     {
-        return Vector2.Distance(transform.position, player.position) <= sightRange;
+        return Vector2.Distance(transform.position, player. transform.position) <= sightRange;
     }
 
     public bool IsPlayerInAttackRange()
     {
-        return Vector2.Distance(transform.position, player.position) <= attackRange;
+        return Vector2.Distance(transform.position, player.transform.position) <= attackRange;
     }
 }

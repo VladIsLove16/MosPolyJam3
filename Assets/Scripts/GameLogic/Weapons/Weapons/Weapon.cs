@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,10 +18,12 @@ public class Weapon : MonoBehaviour
     Transform Host;
     [SerializeField]
     protected WeaponInfo weaponInfo;
+    public Action ammoChanged;
 
 
     protected float lastFireTime = -Mathf.Infinity;
     protected int currentAmmo;
+   
     protected bool isReloading;
     private void Awake()
     {
@@ -34,7 +37,7 @@ public class Weapon : MonoBehaviour
         Look(target);
         Rotate(target);
     }
-    private void SetTarget()
+    protected virtual void SetTarget()
     {
         target = PointerInput.GetPointerInputVector2();
     }
@@ -77,7 +80,7 @@ public class Weapon : MonoBehaviour
         // Update the time of the last shot and reduce ammo
         lastFireTime = Time.time;
         currentAmmo--;
-
+        ammoChanged?.Invoke();
         // Play sound and particle effects
         SoundManager.PlaySound(weaponInfo.sound);
         if(_particleSystem!=null)
@@ -98,6 +101,23 @@ public class Weapon : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(weaponInfo.reloadTime);
         currentAmmo = weaponInfo.bulletsInShop;  // Refill ammo
+        ammoChanged.Invoke();
         isReloading = false;
+    }
+
+    internal string GetDescription()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (currentAmmo == 0)
+        {
+            stringBuilder.Append("reloading...");
+        }
+        else
+        {
+            stringBuilder.Append(currentAmmo.ToString());
+            stringBuilder.Append("/");
+            stringBuilder.Append(weaponInfo.bulletsInShop);
+        }
+        return stringBuilder.ToString();
     }
 }

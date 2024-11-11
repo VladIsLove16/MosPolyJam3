@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   sound: 0
-  baseDamage: 0
-  bulletSpeed: 0
-  reloadTime: 0
-  firerate: 0
-  shotBulletAmount: 0
-  bulletsInShop: 0
-  shootRadius: 0
+  baseDamage: 1
+  bulletSpeed: 1000
+  reloadTime: 1
+  firerate: 0.2
+  shotBulletAmount: 12
+  bulletsInShop: 1
+  shootRadius: 1
   ScreenEdgeDestroy: 0
-  lifetime: 0
+  lifetime: 1
   LifeTimeDestroy: 1

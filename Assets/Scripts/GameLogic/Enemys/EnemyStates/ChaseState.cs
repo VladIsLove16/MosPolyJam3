@@ -25,6 +25,7 @@ public class ChaseState : IEnemyState
 
     public void Exit(EnemyAI enemy)
     {
+        enemy.GetEnemyMover().Stop();
         Debug.Log("Exiting Chase State");
     }
 }

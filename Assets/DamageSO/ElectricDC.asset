@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4c0d1f1078b174490258d844f52c0a, type: 3}
   m_Name: ElectricDC
   m_EditorClassIdentifier: 
-  baseDamage: 0
+  Sprite: {fileID: 21300000, guid: b02e9f26e3ce8c14687cd05e12d55425, type: 3}
+  baseDamage: 1
   damageType: 2
-  CalculatedDamage: 0
+  CalculatedDamage: 1
   stunDuration: 0

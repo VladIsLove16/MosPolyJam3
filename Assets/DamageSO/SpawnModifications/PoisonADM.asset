@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43337267c3c5229418fb7faebb00abd8, type: 3}
-  m_Name: PoisonDM
+  m_Name: PoisonADM
   m_EditorClassIdentifier: 
   modifiers:
   - modifierType: 0

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="DamageStatistic" src="project://database/Assets/UI%20Toolkit/DamageStatistic.uxml?fileID=9197481963319205126&amp;guid=63f6e21370e13d94e950bd9c4aa34877&amp;type=3#DamageStatistic" />
+    <ui:Template name="HealthBar" src="project://database/Assets/UI%20Toolkit/HealthBar.uxml?fileID=9197481963319205126&amp;guid=1123ee5ce249b1343ba7acec84ee6bf8&amp;type=3#HealthBar" />
+    <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSelectors/ProgressBar.uss?fileID=7433441132597879392&amp;guid=b317000409dbd5a42badee7f6410c04f&amp;type=3#ProgressBar" />
+    <ui:Instance template="DamageStatistic" name="DamageStatistic" style="align-items: flex-start; align-self: flex-start; position: absolute; top: 256px; left: 4px;" />
+    <ui:VisualElement name="BottomPanel" style="flex-grow: 1; position: absolute; top: 900px; left: 4px; height: auto; justify-content: flex-end; align-items: flex-start; align-self: flex-start;">
+        <ui:Label tabindex="-1" text="3/12" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BulletsAmount" style="font-size: 42px; -unity-font: url(&quot;project://database/Assets/UI%20Toolkit/Fonts/Airfool.otf?fileID=12800000&amp;guid=181d4d7e257c9b849a11feea52a49816&amp;type=3#Airfool&quot;); margin-left: 20px;" />
+        <ui:Instance template="HealthBar" name="HealthBar" style="width: 320px; position: relative; margin-top: 20px;" />
+    </ui:VisualElement>
+</ui:UXML>
