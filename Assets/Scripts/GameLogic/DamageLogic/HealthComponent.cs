@@ -12,6 +12,8 @@ public class HealthComponent : MonoBehaviour, IDamageable
     GetHitParticleEffect GetHitParticleEffect;
     public bool dead = false;
     private Animator anim;
+    DamageModificationSpawner damageModificationSpawner;
+    ItemSpawner itemSpawner;
     public Action healthChanged;
         public float CurrentHealth
     {
@@ -30,6 +32,8 @@ public class HealthComponent : MonoBehaviour, IDamageable
         CurrentHealth = maxHealth;
         anim = GetComponent<Animator>();
         GetHitParticleEffect = GetComponent<GetHitParticleEffect>();
+        damageModificationSpawner = ServiceLocator.Current.Get<DamageModificationSpawner>();
+        itemSpawner = ServiceLocator.Current.Get<ItemSpawner>();
     }
     void FixedUpdate()
     {
@@ -90,6 +94,11 @@ public class HealthComponent : MonoBehaviour, IDamageable
     }
     protected virtual void Die()
     {
+        GameObject gameObject = damageModificationSpawner.Spawn(transform,out DamagePickup pickup, new SpawnParametrs() { chance = 30});
+        if(gameObject==null)
+        {
+            itemSpawner.Spawn(transform, out ISpawnObject itemObject, new SpawnParametrs() { chance = 12 });
+        }
         gameObject.SetActive(false);
     }
 

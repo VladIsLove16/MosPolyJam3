@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
-
 public class DamageComponent : ScriptableObject
 {
     public Sprite Sprite;
@@ -28,7 +27,7 @@ public class DamageComponent : ScriptableObject
         return modifiedDamage;
     }
 
-    public void AddAdditiveModifier(int value)
+    public void AddAdditiveModifier(float value)
     {
        additiveModifiers.Add(value);
        float dmg = CalculateDamage();
@@ -36,7 +35,7 @@ public class DamageComponent : ScriptableObject
         Debug.Log("AddAdditiveModifier To " + damageType  + "add" + additiveModifiers.Count);
         Debug.Log("dmg" + dmg);
     }
-    public void AddMultiplicativeModifier(int value)
+    public void AddMultiplicativeModifier(float value)
     {
         multiplicativeModifiers.Add(value);
         CalculateDamage();

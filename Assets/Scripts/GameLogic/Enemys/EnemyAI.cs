@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent (typeof(EnemyMover))]
@@ -16,11 +18,14 @@ public class EnemyAI : MonoBehaviour
     public DateTime lastTimeSetNewPatrolTarget;
 
     private Vector2 patrolTarget;
+    private List<Vector2> patrolpoints;
+    private bool randomPatrolPoints = false;
+    public int randomPatrolPointschance = 10;
     private Vector2 lastSeenPlayerPosition;
     private EnemyMover enemyMover;
     private bool playerInSight;
     Weapon weapon;
-
+    public float Radius = 5f;
     protected virtual void Start()
     {
         enemyMover = GetComponent<EnemyMover>();
@@ -28,6 +33,28 @@ public class EnemyAI : MonoBehaviour
         ChangeState(new PatrolState());
         weapon  = GetComponentInChildren<Weapon>();
         player = ServiceLocator.Current.Get<Player>();
+        if(randomPatrolPointschance>UnityEngine.Random.Range(0,100))
+        {
+            randomPatrolPoints = true;
+        }
+        else
+        {
+            AddPotentialPoint((Vector2)transform.position + Vector2.up * Radius);
+            AddPotentialPoint((Vector2)transform.position + Vector2.down * Radius);
+            AddPotentialPoint((Vector2)transform.position + Vector2.right * Radius);
+            AddPotentialPoint((Vector2)transform.position + Vector2.left * Radius);
+            AddPotentialPoint((Vector2)transform.position);
+        }
+    }
+
+    private void AddPotentialPoint(Vector2 potentialTarge)
+    {
+        NavMeshHit hit;
+        if
+        (NavMesh.SamplePosition(potentialTarge, out hit, 2f, NavMesh.AllAreas))
+        {
+            patrolpoints.Add(hit.position);
+        }
     }
 
     protected virtual void Update()
@@ -71,6 +98,11 @@ public class EnemyAI : MonoBehaviour
 
     private void SetNewPatrolTarget()
     {
+        if(!randomPatrolPoints)
+        {
+            SetTarget(patrolpoints);
+            return;
+        }
         Vector2 randomDirection;
         NavMeshHit hit;
         bool validTarget = false;
@@ -87,9 +119,8 @@ public class EnemyAI : MonoBehaviour
                 // Проверяем, находится ли точка на NavMesh
                 if (NavMesh.SamplePosition(potentialTarget, out hit, 2f, NavMesh.AllAreas))
                 {
-                    patrolTarget = hit.position; // Устанавливаем ближайшую доступную точку
-                    lastTimeSetNewPatrolTarget = DateTime.Now;
                     validTarget = true;
+                    SetTarget(hit.position);
                     return;
                 }
                 else
@@ -101,6 +132,18 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void SetTarget(Vector2 vector2)
+    {
+        patrolTarget = vector2;// Устанавливаем ближайшую доступную точку
+        lastTimeSetNewPatrolTarget = DateTime.Now;
+        return ;
+    }
+
+    private void SetTarget(List<Vector2> patrolpoints)
+    {
+        Vector2 target = patrolpoints[UnityEngine.Random.Range(0, patrolpoints.Count)];
+        SetTarget(target);
+    }
 
     public void ChasePlayer()
     {

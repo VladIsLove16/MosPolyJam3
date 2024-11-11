@@ -9,7 +9,7 @@ public class DamageModification : ScriptableObject
     public class Modifier
     {
         public ModifierType modifierType;
-        public int modifierAmount;
+        public float modifierAmount;
         public DamageType damageType;
     }
     public Rarity rarity;

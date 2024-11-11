@@ -4,9 +4,9 @@ using System.Collections;
 [CreateAssetMenu(fileName = "PoisonDamageComponent", menuName = "DamageComponents/Poison")]
 public class PoisonDamageComponent : DamageComponent
 {
-    public float duration;    // Длительность эффекта
-    public float tickInterval; // Интервал между тиками
-    private float damage;
+    public float duration = 2f;    // Длительность эффекта
+    public float tickInterval = 0.5f; // Интервал между тиками
+    private float damage = 0.5f;
     public PoisonDamageComponent ()
     {
         damageType = DamageType.poison;
@@ -28,5 +28,12 @@ public class PoisonDamageComponent : DamageComponent
     {
         damage = CalculateDamage();
         ApplyPoisonEffect(damageable);
+    }
+    public void ResetStats()
+    {
+        duration = 2f;
+        tickInterval = 0.5f;
+        damage = 0.5f;
+        baseDamage = 0.5f;
     }
 }

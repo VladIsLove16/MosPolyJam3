@@ -15,6 +15,7 @@ public class MainMenuUI : MonoBehaviour
     private Button Submit;
 
     private Button MyVK;
+    private Button NataliaVK;
     private Button MyTG;
     private Button Play;
     private Button SettingsBtn;
@@ -36,20 +37,22 @@ public class MainMenuUI : MonoBehaviour
         Play = root.Q("A").Q("B").Q("Play") as Button;
         Play.clicked += OnPlayClicked
             ;
-        MyVK = root.Q("A").Q("B").Q("MyVK") as Button;
+        VisualElement contacts = root.Q("Contacts");
+        VisualElement References = root.Q("References");
+        MyVK = References.Q("MyVK") as Button;
         MyVK.clicked += () =>
         {
             Application.OpenURL("https://vk.com/hochu_microbov");
+        };
+        NataliaVK = References.Q("NataliaVK") as Button;
+        NataliaVK.clicked += () =>
+        {
+            Application.OpenURL("https://vk.com/id180773230");
         };
         MyTG = root.Q("A").Q("B").Q("MyTG") as Button;
         MyTG.clicked += () =>
         {
             Application.OpenURL("https://t.me/MeowLand_Vladislove");
-        };
-        GoToShop = root.Q("A").Q("B").Q("Shop") as Button;
-        GoToShop.clicked += () =>
-        {
-            SceneLoader.Load(SceneLoader.Scene.Shop);
         };
 
         Exit = root.Q("A").Q("B").Q("Exit") as Button;
@@ -100,6 +103,6 @@ public class MainMenuUI : MonoBehaviour
     private void OnPlayClicked()
     {
         Debug.Log("play clicke");
-        SceneLoader.Load(SceneLoader.Scene.Game);
+        SceneLoader.Load(SceneLoader.Scene.Level1);
     }
 }

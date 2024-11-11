@@ -12,6 +12,12 @@ public class DamageApplier : MonoBehaviour
     [SerializeField ]
     List<DamageComponent> StartedDamageComponents = new List<DamageComponent>();
     public Action<DamageComponent> DamageComponentUpdate;
+    [SerializeField]
+    ElectricDamageComponent electric;
+    [SerializeField]
+    PoisonDamageComponent poison;
+    [SerializeField]
+    PhysicalDamageComponent phys;
     private void Awake()
     {
         foreach(var damageComponent in StartedDamageComponents)
@@ -70,16 +76,16 @@ public class DamageApplier : MonoBehaviour
         switch (type)
         {
             case DamageType.electic:
-            damageComponent = new ElectricDamageComponent();
+                damageComponent = electric;
                 break;
             case DamageType.poison:
-            damageComponent = new PoisonDamageComponent();
+            damageComponent = poison;
                 break;
             case DamageType.physical:
-            damageComponent = new DamageComponent();
+            damageComponent = phys;
                 break;
             default:
-                damageComponent = new DamageComponent();
+                damageComponent = phys;
                 break ;
         }
         return damageComponent;

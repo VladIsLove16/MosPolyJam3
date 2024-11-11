@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : MonoBehaviour, ISpawnObject
 {
     private bool used = false;  
     public  InventoryItemType inventoryItemType;

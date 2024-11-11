@@ -9,7 +9,6 @@ public class Player : MonoBehaviour , IService
     [SerializeField]
     private List<Weapon> Weapons;
     private Weapon CurrentWeapon;
-    public DamageApplier GetDamageApplier() { return damageApplier; }
     Inventory inventory;
     InventoryFabric inventoryFabric;
     private int weaponNum;
@@ -28,6 +27,10 @@ public class Player : MonoBehaviour , IService
     internal Inventory GetInventory()
     {
         return inventory;
+    }
+    public DamageApplier GetDamageApplier()
+    {
+        return damageApplier;
     }
     public void Use(InventoryItemType inventoryitemType)
     {

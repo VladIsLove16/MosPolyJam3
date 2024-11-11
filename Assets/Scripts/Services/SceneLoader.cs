@@ -8,10 +8,11 @@ public static class SceneLoader
     private static AsyncOperation loadingAsyncOperation;
     public enum Scene
     {
-        Game,
+        Level1,
+        Level2,
+        Level3,
         Loading,
         MainMenu,
-        Shop
     }
     private static Action onLoaderCallback;
     public static void Load(Scene scene)

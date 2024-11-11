@@ -5,7 +5,6 @@ public class BossAI : EnemyAI
     private bool isSpawningEnemies = false;
 
     // Параметры для полета и спавна врагов
-    [SerializeField] private float flySpeed = 5f;
     [SerializeField] private float spawnRadius = 10f;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnInterval = 5f;

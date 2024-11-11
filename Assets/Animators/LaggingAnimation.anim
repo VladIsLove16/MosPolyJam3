@@ -17,58 +17,21 @@ AnimationClip:
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves:
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    - time: 0.23333333
-      value: {fileID: 21300000, guid: 610a859fda19b364cb1d16c00e279523, type: 2}
-    - time: 0.48333332
-      value: {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    - time: 1.2
-      value: {fileID: 21300000, guid: 610a859fda19b364cb1d16c00e279523, type: 2}
-    - time: 1.4666667
-      value: {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    - time: 2.5666666
-      value: {fileID: 21300000, guid: 610a859fda19b364cb1d16c00e279523, type: 2}
-    - time: 3.7
-      value: {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    attribute: m_Sprite
-    path: 
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
+  m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings:
-    - serializedVersion: 2
-      path: 0
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    pptrCurveMapping:
-    - {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    - {fileID: 21300000, guid: 610a859fda19b364cb1d16c00e279523, type: 2}
-    - {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    - {fileID: 21300000, guid: 610a859fda19b364cb1d16c00e279523, type: 2}
-    - {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
-    - {fileID: 21300000, guid: 610a859fda19b364cb1d16c00e279523, type: 2}
-    - {fileID: 21300000, guid: a0dedbc3bbe4cbd4abafc15de971cb00, type: 3}
+    genericBindings: []
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 3.7166667
+    m_StopTime: 3.7
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -89,21 +52,56 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: 
+    functionName: ReturnNormal
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
-    functionName: 
+  - time: 0.21666667
+    functionName: Lag
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.083333336
-    functionName: 
+  - time: 0.51666665
+    functionName: ReturnNormal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2
+    functionName: Lag
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4833333
+    functionName: ReturnNormal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.5666666
+    functionName: Lag
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.7
+    functionName: Lag
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.7
+    functionName: ResetTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

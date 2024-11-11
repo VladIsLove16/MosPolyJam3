@@ -16,4 +16,9 @@ public class ElectricDamageComponent : DamageComponent
             stunable.Stun(stunDuration);
         }
     }
+    public void ResetStats()
+    {
+        baseDamage = 2f;
+        stunDuration = 0.5f;
+    }
 }

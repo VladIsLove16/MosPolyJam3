@@ -13,6 +13,12 @@ public class ServiceLocatorLoader_Main : MonoBehaviour
     private InventoryFabric InventoryFabric;
     [SerializeField]
     private GameAssets gameAssets;
+    [SerializeField]
+    private DamageModificationSpawner damageModificationSpawner;
+    [SerializeField]
+    private ItemSpawner itemSpawner;
+    [SerializeField]
+    private EnemySpawner EnemySpawner;
        
     //private List<IDisposable> _disposables = new List<IDisposable>();
 
@@ -36,6 +42,9 @@ public class ServiceLocatorLoader_Main : MonoBehaviour
         ServiceLocator.Current.Register(_eventBus);
         ServiceLocator.Current.Register(player);
         ServiceLocator.Current.Register(gameAssets);
+        ServiceLocator.Current.Register(damageModificationSpawner);
+        ServiceLocator.Current.Register(itemSpawner);
+        ServiceLocator.Current.Register(EnemySpawner);
     }
 
     private void Init()

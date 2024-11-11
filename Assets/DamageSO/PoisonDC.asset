@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PoisonDC
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: fea9c4c034d6c6f438287786a3d5327a, type: 3}
-  baseDamage: 0
+  baseDamage: 0.5
   damageType: 1
-  CalculatedDamage: 0
+  CalculatedDamage: 3.9
   duration: 0
   tickInterval: 0

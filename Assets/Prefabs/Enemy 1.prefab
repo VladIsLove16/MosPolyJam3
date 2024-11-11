@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 2552072006498750810}
   - component: {fileID: 8964163502024053209}
   - component: {fileID: 4582763453425485223}
-  - component: {fileID: 5433589676206826842}
   m_Layer: 9
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -62,6 +61,7 @@ MonoBehaviour:
   patrolRadius: 5
   lookAroundTime: 1
   setNewPatrolTargetDelay: 2
+  randomPatrolPointschance: 10
 --- !u!212 &4884183680165444373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -258,22 +258,10 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 0}
+  m_PanelSettings: {fileID: 11400000, guid: d0beb5356bb237d4da1895efeb41383d, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 1123ee5ce249b1343ba7acec84ee6bf8, type: 3}
   m_SortingOrder: 0
---- !u!114 &5433589676206826842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721068378533688726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7281cb09b92c274eb5c1ac179694502, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6783054010518530109
 GameObject:
   m_ObjectHideFlags: 0
