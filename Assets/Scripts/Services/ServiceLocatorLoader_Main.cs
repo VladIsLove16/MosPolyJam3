@@ -21,6 +21,8 @@ public class ServiceLocatorLoader_Main : MonoBehaviour
     private EnemySpawner EnemySpawner;
     [SerializeField]
     private BulletParent BulletParent;
+    [SerializeField]
+    private ScoreManager ScoreManager;
        
     //private List<IDisposable> _disposables = new List<IDisposable>();
 
@@ -48,6 +50,7 @@ public class ServiceLocatorLoader_Main : MonoBehaviour
         ServiceLocator.Current.Register(itemSpawner);
         ServiceLocator.Current.Register(EnemySpawner);
         ServiceLocator.Current.Register(BulletParent);
+        ServiceLocator.Current.Register(ScoreManager);
     }
 
     private void Init()

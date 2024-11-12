@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/BossBar.uss?fileID=7433441132597879392&amp;guid=1957b034fe805a949a739e7eda671a3c&amp;type=3#BossBar" />
+    <ui:ProgressBar value="55.6" name="healthProgress" style="top: 14%; height: auto; width: auto;" />
+</ui:UXML>

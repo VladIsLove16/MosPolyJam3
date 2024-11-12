@@ -20,22 +20,44 @@ public class Weapon : MonoBehaviour
     protected WeaponInfo weaponInfo;
     public Action ammoChanged;
 
-
+    HealthComponent healthComponent;
     protected float lastFireTime = -Mathf.Infinity;
     protected int currentAmmo;
    
     protected bool isReloading;
-    private void Awake()
+    public virtual void Awake()
     {
         _particleSystem = GetComponent<ParticleSystem>();
         emitter = GetComponent<Emitter>();
+        healthComponent = GetComponent<HealthComponent>();
+        healthComponent.OnStun+=OnStun;
+
+    }
+    bool stunned = false;
+    private float lastTimeStunned;
+    private void OnStun()
+    {
+        stunned = true;
+        lastTimeStunned = Time.time;
+
     }
 
+    public virtual void Start()
+    {
+        currentAmmo = weaponInfo.bulletsInShop;
+    }
     private void Update()
     {
-        SetTarget();
-        Look(target);
-        Rotate(target);
+        if (lastTimeStunned + 0.5f < Time.time)
+        {
+            stunned = false;
+        }
+        if (!stunned)
+        {
+            SetTarget();
+            Look(target);
+            Rotate(target);
+        }
     }
     protected virtual void SetTarget()
     {
@@ -43,6 +65,8 @@ public class Weapon : MonoBehaviour
     }
     public Emitter GetEmmiter()
     {
+        if(emitter == null)
+            emitter = GetComponent<Emitter>();
         return emitter;
     }
     private void Rotate(Vector2 target)
@@ -51,11 +75,11 @@ public class Weapon : MonoBehaviour
         {
             if(target.x>transform.position.x)
             {
-                transform.localScale = new Vector3(-1, -1f);
+                transform.localScale = new Vector3(Mathf.Abs( transform.localScale .x)*- 1, Mathf.Abs(transform.localScale.y) * - 1f);
             }
             else
             {
-                transform.localScale = new Vector3(-1, 1f);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, Mathf.Abs(transform.localScale.y) * 1f);
             }
             Vector2 direction = target - (Vector2)Host.position;
             Vector2 position = direction.normalized * radius;
@@ -74,10 +98,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual void Start()
-    {
-        currentAmmo = weaponInfo.bulletsInShop;
-    }
 
     public virtual void Shoot()
     {
@@ -109,7 +129,7 @@ public class Weapon : MonoBehaviour
         isReloading = true;
         yield return new WaitForSeconds(weaponInfo.reloadTime);
         currentAmmo = weaponInfo.bulletsInShop;  // Refill ammo
-        ammoChanged.Invoke();
+        ammoChanged?.Invoke();
         isReloading = false;
     }
 

@@ -39,6 +39,7 @@ public class PlayerInputHandler : MonoBehaviour
             action.performed += UseItem;
         }
         playerInput.Player.Shoot.performed += Shoot ;
+        playerInput.Player.Shooting.performed += Shoot;
     }
 
     private void Shoot(InputAction.CallbackContext context)

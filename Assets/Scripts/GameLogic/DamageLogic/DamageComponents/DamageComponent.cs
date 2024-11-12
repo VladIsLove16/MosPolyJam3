@@ -10,19 +10,29 @@ public class DamageComponent : ScriptableObject
     protected List<float> additiveModifiers = new List<float>();
     protected List<float> multiplicativeModifiers = new List<float>();
     public Action<DamageComponent> damageChanged;
+    EventBus eventBus;
     public DamageComponent()
     {
         CalculateDamage();
     }
     private void Awake()
     {
-        ServiceLocator.Current.Get<EventBus>().Subscribe<GameStartedEvent>(OnGameStarted);
+        eventBus= ServiceLocator.Current.Get<EventBus>();
+        if (eventBus != null)
+        {
+            eventBus.Subscribe<GameStartedEvent>(OnGameStarted);
+
+        }
+        else
+            Debug.Assert(false,"Event bus is Null");
     }
 
     private void OnGameStarted(GameStartedEvent @event)
     {
         ResetStats();
     }
+
+    [ContextMenu("ResetStats")]
     public virtual void ResetStats()
     {
         additiveModifiers.Clear();
@@ -32,7 +42,7 @@ public class DamageComponent : ScriptableObject
 
     public DamageComponent(DamageType damageType) { this.damageType = damageType; CalculateDamage(); }
 
-    protected float CalculateDamage()
+    public float CalculateDamage()
     {
         float modifiedDamage = baseDamage;
         foreach (var additive in additiveModifiers)
@@ -59,9 +69,15 @@ public class DamageComponent : ScriptableObject
         damageChanged?.Invoke(this);
     }
 
-    public virtual void ApplyDamage(IDamageable damageable)
+    public virtual void ApplyDamage(IDamageable damageable, DamageParameters damageParameters = null)
     {
-        damageable.ApplyDamage(CalculateDamage());
+        if(damageParameters!=null)
+        {
+            damageParameters.damage = CalculateDamage();
+            damageable.ApplyDamage(damageParameters);
+            return;
+        }    
+        damageable.ApplyDamage(new DamageParameters() { damage = CalculateDamage() });
     }
 
     public string GetDescription()

@@ -10,6 +10,5 @@ public class PhysicalDamageComponent : DamageComponent
     public override void ResetStats()
     {
         base.ResetStats();
-        baseDamage = 2f;
     }
 }

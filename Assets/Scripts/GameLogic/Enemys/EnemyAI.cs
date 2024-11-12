@@ -22,16 +22,36 @@ public class EnemyAI : MonoBehaviour
     private bool randomPatrolPoints = false;
     public int randomPatrolPointschance = 10;
     private Vector2 lastSeenPlayerPosition;
-    private EnemyMover enemyMover;
+    protected EnemyMover enemyMover;
     private bool playerInSight;
     Weapon weapon;
     public float Radius = 5f;
-    protected virtual void Start()
+    HealthComponent health;
+    [SerializeField]
+    DamageApplier EnemyDamageApplier;
+    private bool stunned = false;
+    protected virtual void Awake()
     {
         enemyMover = GetComponent<EnemyMover>();
         weapon = GetComponentInChildren<Weapon>();
         player = ServiceLocator.Current.Get<Player>();
+        health =  GetComponent<HealthComponent>();
+        health.died += () => SoundManager.PlaySound(SoundManager.Sound.EnemyDie,transform.position);
+        weapon.GetEmmiter().SetDamageApplier(EnemyDamageApplier);
+        health.OnStun += OnStun;
+    }
 
+    private void OnStun()
+    {
+        stunned = true;
+        Invoke(nameof(Destun), 0.5f);
+    }
+    private void Destun()
+    {
+        stunned = false;
+    }
+    protected virtual void Start()
+    {
         InitPatrolTargetSelection();
         SetNewPatrolTarget();
         ChangeState(new PatrolState());
@@ -56,17 +76,16 @@ public class EnemyAI : MonoBehaviour
     private void AddPotentialPoint(Vector2 potentialTarge)
     {
         NavMeshHit hit;
-        Debug.Log("AddPotentialPoint "+ potentialTarge);
         if(NavMesh.SamplePosition(potentialTarge, out hit, 2f, NavMesh.AllAreas))
         {
             patrolpoints.Add(hit.position);
-            Debug.Log("AddPotentialPoint TRUE");
         }
     }
 
     protected virtual void Update()
     {
-        currentState?.Update(this);
+        if(!stunned)
+            currentState?.Update(this);
     }
 
     public virtual void ChangeState(IEnemyState newState)
@@ -85,7 +104,7 @@ public class EnemyAI : MonoBehaviour
             SetNewPatrolTarget();
         if (PatrolTargerReached())
         {
-             ChangeState(new LookAroundState());
+             ChangeState(new LookAroundState(lookAroundTime));
         }
         else
         {
@@ -148,15 +167,22 @@ public class EnemyAI : MonoBehaviour
 
     private void SetTarget(List<Vector2> patrolpoints)
     {
+        if(patrolpoints.Count ==0)
+        {
+            Debug.Assert(true,"patrolpoints.Count ==0" + name + gameObject.GetInstanceID());
+            randomPatrolPoints = true;
+            SetNewPatrolTarget();
+            return;
+        }    
         int count = patrolpoints.Count;
         Vector2 target = patrolpoints[UnityEngine.Random.Range(0, count)];
         SetTarget(target);
     }
-
     public void ChasePlayer()
     {
-        lastSeenPlayerPosition = player.transform. position;
+        lastSeenPlayerPosition =(Vector2) player.transform. position;
         enemyMover.Move(player .transform.position, chaseSpeed);
+
     }
 
     public void MoveToLastSeenPosition()
@@ -169,11 +195,11 @@ public class EnemyAI : MonoBehaviour
     }
     public bool CanSeePlayer()
     {
-        return Vector2.Distance(transform.position, player. transform.position) <= sightRange;
+        return Vector2.Distance(transform.position,(Vector2) player. transform.position) <= sightRange;
     }
 
     public bool IsPlayerInAttackRange()
     {
-        return Vector2.Distance(transform.position, player.transform.position) <= attackRange;
+        return Vector2.Distance(transform.position, (Vector2)player.transform.position) <= attackRange;
     }
 }

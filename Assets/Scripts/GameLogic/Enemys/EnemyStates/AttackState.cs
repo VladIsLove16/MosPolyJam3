@@ -5,6 +5,7 @@ public class AttackState : IEnemyState
     public void Enter(EnemyAI enemy)
     {
         Debug.Log("Entering Attack State");
+        enemy.GetEnemyMover().Stop();
         // Можно добавить анимацию атаки
     }
 

@@ -1,29 +1,63 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMover : MonoBehaviour
 {
-
+    Rigidbody2D Rigidbody2D;
     NavMeshAgent NavMeshAgent;
     public float StoppingDistance = 1f;
-    private void Start()
+    private void Awake()
     {
-
+        Rigidbody2D = GetComponent<Rigidbody2D>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         NavMeshAgent.updateRotation = false;
         NavMeshAgent.updateUpAxis = false;
         NavMeshAgent.stoppingDistance = StoppingDistance;
+        HealthComponent healthComponent = GetComponent<HealthComponent>();
+        healthComponent.OnStun += OnStun;
+    }
+    float lastTimeStunned = 0f;
+    bool stunned =false;
+    private void Update()
+    {
+        if (lastTimeStunned + 0.5f < Time.time)
+        {
+            stunned = false;
+        }
+    }
+    private void OnStun()
+    {
+        stunned = true;
     }
 
-    public void Move(Vector2 target, float speed)
+    
+public void Move(Vector2 target, float speed)
     {
-        NavMeshAgent.isStopped = false; 
-        NavMeshAgent.SetDestination(target);
-        NavMeshAgent.speed = speed;
+        if (stunned)
+        {
+            Rigidbody2D.velocity = Vector2.zero;
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+            NavMeshAgent.isStopped = false;
+            NavMeshAgent.SetDestination(target);
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+            NavMeshAgent.speed = speed;
+            if (Rigidbody2D.velocity.magnitude > 0)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.EnemyMove, transform.position);
+            }
+        }
+       
     }
     public void Stop()
     {
-        NavMeshAgent.isStopped  = true;
+        if(NavMeshAgent==null)
+            NavMeshAgent = GetComponent<NavMeshAgent>();
+        NavMeshAgent.isStopped = true;
     }
 
 }

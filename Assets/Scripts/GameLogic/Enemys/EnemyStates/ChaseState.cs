@@ -15,7 +15,7 @@ public class ChaseState : IEnemyState
         else if (!enemy.CanSeePlayer())
         {
             // Если игрок вышел из зоны видимости, враг идет к последней известной позиции
-            enemy.ChangeState(new LookAroundState());
+            enemy.ChangeState(new LookAroundState(enemy.lookAroundTime));
         }
         else
         {

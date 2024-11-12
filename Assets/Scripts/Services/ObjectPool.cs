@@ -13,15 +13,24 @@ public class ObjectPool : MonoBehaviour
         // Создаём начальный пул объектов
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(prefab);
+            GameObject obj = Instantiate(prefab,transform,false);
             obj.SetActive(false); // Делаем объект неактивным, пока он не нужен
             pool.Enqueue(obj);
         }
     }
+    private void OnDestroy()
+    {
+         foreach(GameObject obj in pool)
+        {
+            Destroy(obj,0.5f);
+        }
+    }
+    private void DestroyD(GameObject game)
+    {
 
+    }
     public GameObject GetFromPool()
     {
-        // Проверяем, есть ли доступный объект в пуле
         if (pool.Count > 0)
         {
             GameObject obj = pool.Dequeue();
@@ -29,12 +38,7 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else
-        {
-            // Если пул пуст, создаем новый объект
-            GameObject obj = Instantiate(prefab);
-            obj.SetActive(true);
-            return obj;
-        }
+            return null;
     }
 
     public void ReturnToPool(GameObject obj)

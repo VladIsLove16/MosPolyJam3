@@ -11,9 +11,11 @@ public static class SceneLoader
         Level1,
         Level2,
         Level3,
+        Level4,
         Loading,
         MainMenu,
     }
+    public static Scene CurrentScene;
     private static Action onLoaderCallback;
     public static void Load(Scene scene)
     {
@@ -23,12 +25,21 @@ public static class SceneLoader
             loadingGO.AddComponent<LoadingMonoBehaviour>().StartCoroutine(LoadSceneAsync(scene));
             
         };
+        if (scene == Scene.Level4)
+        {
+            GameSettings.EndlessMode = true;
+        }
+        else
+        {
+            GameSettings.EndlessMode = false;
+        }
         SceneManager.LoadScene(Scene.Loading.ToString());
     }
     private static IEnumerator LoadSceneAsync(Scene scene)
     {
         yield return null;
         loadingAsyncOperation = SceneManager.LoadSceneAsync(scene.ToString());
+        CurrentScene = scene;
         while (!loadingAsyncOperation.isDone)
         {
             yield return null;

@@ -1,16 +1,44 @@
-﻿using UnityEngine.UIElements;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BossHealthBar : HealthBar
 {
+    [SerializeField]
+    float topPercent = 0.1f;
+    [SerializeField]
+    float leftPercent = 0.1f;
+
+    [SerializeField]
+    BossAI bossAI;
+    private bool FightStarted;
+    protected override void Awake()
+    {
+        base.Awake();
+        bossAI.FightStarted += () => FightStarted = true;
+    }
+    protected override void UpdateHealthBarVisibility()
+    {
+        if ((FightStarted))
+        {
+            Show();
+        }
+        else
+        {
+            Hide();
+        }
+    }
+    protected override void UpdatehealthBarWidth()
+    {
+        
+    }
     protected override void UpdateHealthBarPosition()
     {
-        //Vector3 worldPos = transform.position + Vector3.up * 2;  // Смещаем полоску здоровья выше врага
-        //Vector2 screenPos = Camera.main.WorldToScreenPoint(worldPos);
-
-        //root.style.left = screenPos.x;
-        //root.style.top = Screen.height - screenPos.y;  // Инвертируем Y
-        // Устанавливаем полоску здоровья в центр экрана по горизонтали и немного ниже верхнего края по вертикали
-        root.style.left = new Length(50, LengthUnit.Percent);  // Центр по горизонтали
-        root.style.top = new Length(5, LengthUnit.Percent);    // Отступ от верхнего края
+        //root.style.position = Position.Absolute;
+        //root.style.alignSelf = Align.Center; 
+        //root.style.top = new Length(topPercent, LengthUnit.Percent);
+        //root.style.left = new Length(leftPercent, LengthUnit.Percent);
+        //root.style.width = new Length(100, LengthUnit.Percent);
+        //root.style.maxWidth = new Length(100, LengthUnit.Percent);
+        //root.style.flexBasis= new Length(100, LengthUnit.Percent);
     }
 }

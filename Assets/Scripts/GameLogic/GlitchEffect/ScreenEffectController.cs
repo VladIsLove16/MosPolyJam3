@@ -15,7 +15,10 @@ public class ScreenEffectController : MonoBehaviour
 
     private float glitchTimer = 0f;
     private float glitchCooldown = 0f;
-
+    [SerializeField]
+    LocationLagger LocationLagger;
+    [SerializeField]
+    float delay = 0.3f;
     private void Start()
     {
         if (glitchEffect != null)
@@ -40,8 +43,10 @@ public class ScreenEffectController : MonoBehaviour
             // Активируем глюк
             if (glitchEffect != null && distortionEffect != null)
             {
+                SoundManager.PlaySound(SoundManager.Sound.DistortionSound);
                 glitchEffect.glitchMaterial.SetFloat("_GlitchAmount", glitchAmount);
                 distortionEffect.distortionMaterial.SetFloat("_DistortionStrength", distortionStrength);
+                LocationLagger.StartLags(delay);
             }
         }
 

@@ -20,6 +20,10 @@ public class GetHitParticleEffect : MonoBehaviour
 
             // Получаем объект пара из пула
             GameObject steamEffect = steamPool.GetFromPool();
+            if (steamEffect == null)
+            {
+                return;
+            }
             steamEffect.transform.position = contactPoint + offset;
 
             // Поворачиваем частицы в направлении, противоположном incomingDirection
@@ -33,7 +37,10 @@ public class GetHitParticleEffect : MonoBehaviour
     private IEnumerator ReturnToPoolAfterDelay(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);
-        steamPool.ReturnToPool(obj);
+        if (steamPool != null)
+            steamPool.ReturnToPool(obj);
+        else
+            Destroy(obj);
     }
     private Vector3 GetContactPoint(Collision2D collision)
     {

@@ -21,12 +21,12 @@ TagManager:
   - playerBullets
   - enemyBullets
   - 
+  - Environment
   - 
+  - NotBake
   - 
-  - 
-  - 
-  - 
-  - 
+  - bossBullet
+  - Shields
   - 
   - 
   - 

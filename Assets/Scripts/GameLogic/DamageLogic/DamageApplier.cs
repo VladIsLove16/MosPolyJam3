@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class DamageApplier : MonoBehaviour
 {
@@ -12,29 +13,43 @@ public class DamageApplier : MonoBehaviour
     [SerializeField ]
     List<DamageComponent> StartedDamageComponents = new List<DamageComponent>();
     public Action<DamageComponent> DamageComponentUpdate;
+    public List<DamageModification> StartedModificationList;
     [SerializeField]
-    ElectricDamageComponent electric;
+    public ElectricDamageComponent electric;
     [SerializeField]
-    PoisonDamageComponent poison;
+    public PoisonDamageComponent poison;
     [SerializeField]
-    PhysicalDamageComponent phys;
+    public PhysicalDamageComponent phys;
     private void Awake()
     {
         foreach(var damageComponent in StartedDamageComponents)
         {
             AddDamageComponent(damageComponent);
         }
+        foreach(var a in StartedModificationList)
+        {
+            a.ApplyModification(this);
+        }
     }
     private void Update()
     {
         _damageComponentsCount = _damageComponents.Count;
     }
-    public void ApplyDamage(IDamageable damageable)
+    public void ApplyDamage(DamageParameters damageParameters, IDamageable damageable)
     {
         foreach (var damageComponent in _damageComponents.Values)
         {
-            damageComponent.ApplyDamage(damageable);
+            damageComponent.ApplyDamage(damageable,  damageParameters);
         }
+    }
+    public float CalculateDamage()
+    {
+        float total = 0;
+        foreach (var damageComponent in _damageComponents.Values)
+        {
+             total += damageComponent.CalculateDamage();
+        }
+        return total;
     }
 
     // Метод для получения компонента DamageComponent по типу
@@ -57,7 +72,12 @@ public class DamageApplier : MonoBehaviour
         }
         else
         {
+            Debug.Log("(_damageComponents.CreateDamageComponent" + type.ToString());
             DamageComponent damageComponent = CreateDamageComponent(type);
+            if(damageComponent==null)
+            {
+                Debug.Assert(false,"(_damageComponents.CreateDamageComponent NULL" + type.ToString());
+            }
             AddDamageComponent(damageComponent);
             return damageComponent;
         }

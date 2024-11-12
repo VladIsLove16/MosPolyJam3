@@ -12,29 +12,24 @@ public class PoisonDamageComponent : DamageComponent
         damageType = DamageType.poison;
     }
     // Начать эффект яда
-    private IEnumerator ApplyPoisonEffect(IDamageable target)
+    private IEnumerator ApplyPoisonEffect(IDamageable target, DamageParameters damageParameters)
     {
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
-            // Здесь вызываем функцию для нанесения урона по цели
-            target.ApplyDamage(damage);
+            target.ApplyDamage(damageParameters);
             yield return new WaitForSeconds(tickInterval);
             elapsedTime += tickInterval;
         }
     }
 
-    public override void ApplyDamage(IDamageable damageable)
+    public override void ApplyDamage(IDamageable damageable, DamageParameters damageParameters)
     {
-        damage = CalculateDamage();
-        ApplyPoisonEffect(damageable);
+        base.ApplyDamage(damageable, damageParameters);
+        ApplyPoisonEffect(damageable, damageParameters);
     }
     public override void ResetStats()
     {
         base.ResetStats();
-        duration = 2f;
-        tickInterval = 0.5f;
-        damage = 0.5f;
-        baseDamage = 0.5f;
     }
 }

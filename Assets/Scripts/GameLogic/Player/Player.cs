@@ -8,11 +8,13 @@ public class Player : MonoBehaviour , IService
     private Emitter emitter;
     [SerializeField]
     private List<Weapon> Weapons;
-    private Weapon CurrentWeapon;
+    Weapon currentWeapon;
     Inventory inventory;
     InventoryFabric inventoryFabric;
     private int weaponNum;
     HealthComponent healthComponent;
+    private Animator animator;
+    private PlayerMovement playerMovement;
     private void Awake()
     {
         inventory = ServiceLocator.Current.Get<Inventory>();
@@ -22,8 +24,29 @@ public class Player : MonoBehaviour , IService
         }
         SwitchWeaponByType(Weapons[weaponNum].GetType());
         healthComponent= GetComponent<HealthComponent>();
+        healthComponent.died += OnDie;
+        animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+        if (SceneLoader.CurrentScene == SceneLoader.Scene.Level1 || SceneLoader.CurrentScene == SceneLoader.Scene.Level4)
+        {
+            damageApplier.electric.ResetStats();
+            damageApplier.poison.ResetStats();
+            damageApplier.phys.ResetStats();
+        }
     }
 
+    private void OnDie()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.PlayerDied);
+        gameObject.SetActive(false);
+        ServiceLocator.Current.Get<EventBus>().Invoke(new GameOver());
+        Time.timeScale = 0;
+    }
+
+    private void Update()
+    {
+        animator.SetBool("Moving", playerMovement.IsMoving);
+    }
     internal Inventory GetInventory()
     {
         return inventory;
@@ -44,9 +67,9 @@ public class Player : MonoBehaviour , IService
     }
     public void Shoot()
     {
-        CurrentWeapon.Shoot();
+        currentWeapon.Shoot();
     }
-    public void SwitchWeaponByType(Type weaponType)
+    public Weapon SwitchWeaponByType(Type weaponType)
     {
         foreach (Weapon weapon in Weapons)
         {
@@ -54,23 +77,28 @@ public class Player : MonoBehaviour , IService
             {
                 HideAllWeapon();
                 SetWeapon(weapon);
-                Debug.Log("Switched to weapon: " + CurrentWeapon.name);
-                return;
+                Debug.Log("Switched to weapon: " + currentWeapon.name);
+                return weapon;
             }
         }
         Debug.Log("Weapon of type " + weaponType + " not found.");
-        SwitchWeaponByType(Weapons[0].GetType());
+        if(Weapons.Count==0)
+            return null;
+        return
+            SwitchWeaponByType(Weapons[0].GetType());
 
     }
 
     private void SetWeapon(Weapon  weapon)
     {
-        CurrentWeapon =  weapon;
+        currentWeapon =  weapon;
         weapon.gameObject.SetActive(true);
     }
     public Weapon GetWeapon()
     {
-        return CurrentWeapon;
+        if(currentWeapon == null)
+            SwitchWeaponByType(Weapons[weaponNum].GetType());
+        return currentWeapon;
     }
     private void HideAllWeapon()
     {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UIElements;
@@ -18,6 +19,7 @@ public class MainMenuUI : MonoBehaviour
     private Button NataliaVK;
     private Button MyTG;
     private Button Play;
+    private Button EndlessMode;
     private Button SettingsBtn;
     private Button GoToShop;
     private Button Exit;
@@ -35,8 +37,18 @@ public class MainMenuUI : MonoBehaviour
         //DownPanel = root.Q("DownPanel");
 
         Play = root.Q("A").Q("B").Q("Play") as Button;
-        Play.clicked += OnPlayClicked
-            ;
+        Play.clicked += OnPlayClicked  ;
+        EndlessMode = root.Q("A").Q("B").Q("EndlessMode") as Button;
+        if(PlayerPrefs.GetInt("gameWon") == 1)
+        {
+            EndlessMode.SetEnabled(true);
+        }
+        else
+        {
+            EndlessMode.SetEnabled(false);
+        }    
+        EndlessMode.clicked += OnEndlessModeClicked;
+
         VisualElement contacts = root.Q("Contacts");
         VisualElement References = root.Q("References");
         MyVK = References.Q("MyVK") as Button;
@@ -88,6 +100,11 @@ public class MainMenuUI : MonoBehaviour
         //};
     }
 
+    private void OnEndlessModeClicked()
+    {
+        SceneLoader.Load(SceneLoader.Scene.Level4);
+    }
+
     private static void OnExitClicked()
     {
         Application.Quit();
@@ -104,6 +121,6 @@ public class MainMenuUI : MonoBehaviour
     {
         Debug.Log("play clicke");
         ServiceLocator.Current.Get<EventBus>().Invoke(new GameStartedEvent());
-        SceneLoader.Load(SceneLoader.Scene.Level1);
+        SceneLoader.Load(SceneLoader.Scene.Level4);
     }
 }

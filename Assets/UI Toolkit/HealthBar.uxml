@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/UnityStyleSelectors/ProgressBar.uss?fileID=7433441132597879392&amp;guid=b317000409dbd5a42badee7f6410c04f&amp;type=3#ProgressBar" />
-    <ui:ProgressBar value="22" name="healthProgress" style="max-height: 80px; min-width: 80px; min-height: 80px; height: 20px; display: flex;" />
+    <ui:ProgressBar value="55.6" name="healthProgress" style="height: initial; display: flex; flex-basis: 100%; width: initial;" />
 </ui:UXML>

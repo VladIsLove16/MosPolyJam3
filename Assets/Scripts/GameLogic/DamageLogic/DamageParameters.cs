@@ -3,6 +3,6 @@ using UnityEngine;
 
 public class DamageParameters
 {
-    public int damage;
+    public float damage;
     public Collision2D enemyCollision;
 }

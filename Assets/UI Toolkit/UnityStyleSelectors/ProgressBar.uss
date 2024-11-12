@@ -1,7 +1,4 @@
 #unity-progress-bar {
-    display: flex;
-    -unity-background-image-tint-color: rgb(236, 186, 34);
-    width: 320px;
 }
 
 #unity-progress-bar .unity-progress-bar__background {
@@ -18,6 +15,7 @@
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
     border-bottom-color: rgb(0, 0, 0);
+    width: auto;
 }
 
 #unity-progress-bar .unity-progress-bar__progress {
@@ -34,12 +32,51 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+    flex-basis: 100%;
 }
 
 #unity-progress-bar .unity-progress-bar__title-container {
+    width: 1574px;
 }
 
 #unity-progress-bar .unity-progress-bar__title {
     -unity-font: url("project://database/Assets/UI%20Toolkit/Fonts/Airfool.otf?fileID=12800000&guid=181d4d7e257c9b849a11feea52a49816&type=3#Airfool");
     font-size: 24px;
+    width: 1638px;
+}
+
+.GameOverLabel :disabled {
+    opacity: 0;
+    display: none;
+}
+
+.GameOverLabel :enabled {
+    display: flex;
+    transition-property: display;
+    transition-duration: 1s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.GameOverLabel {
+    opacity: 0;
+    display: none;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+.home {
+    background-image: url("project://database/Assets/Sprites/%D0%94%D0%BE%D0%BC%D0%B8%D0%BA.png?fileID=21300000&guid=46401a32ecc07504eba614d1e3054b4c&type=3#Домик");
+}
+
+.home :hover {
+    background-image: url("project://database/Assets/Sprites/%D0%B4%D0%BE%D0%BC%D0%B8%D0%BA%20%D0%BD%D0%B0%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5.png?fileID=21300000&guid=52fb9dc303a3b204a9e2243039f551f1&type=3#домик наведение");
+}
+
+.repeat {
+    background-image: url("project://database/Assets/Sprites/%D0%BF%D0%BE%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D1%82%D1%8C.png?fileID=21300000&guid=a25a32f6788e1d7498265b540b7514af&type=3#повторить");
+}
+
+.repeat :hover {
+    background-image: url("project://database/Assets/Sprites/Repeat.png?fileID=21300000&guid=79f4292f0dfdbd3469fe1e5a117cac72&type=3#Repeat");
 }

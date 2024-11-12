@@ -7,14 +7,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5829cd6c71d7974e808709abf129ee5, type: 3}
   m_Name: PoisonDC
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: fea9c4c034d6c6f438287786a3d5327a, type: 3}
+  Sprite: {fileID: 21300000, guid: 397e1d61b12494649b5c34b3e97afb39, type: 3}
   baseDamage: 0.5
   damageType: 1
-  CalculatedDamage: 3.9
-  duration: 0
-  tickInterval: 0
+  CalculatedDamage: 13.9425
+  duration: 2
+  tickInterval: 0.5

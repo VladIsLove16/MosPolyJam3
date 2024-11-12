@@ -2,11 +2,14 @@
 
 public class LookAroundState : IEnemyState
 {
-    private float lookAroundTimer;
-
+    public LookAroundState(float time)
+    {
+        lookAroundTimer = time; 
+    }
+    public float lookAroundTimer;
     public void Enter(EnemyAI enemy)
     {
-        lookAroundTimer = enemy.lookAroundTime;
+        enemy.GetEnemyMover().Stop();
         Debug.Log("Entering LookAround State");
     }
 

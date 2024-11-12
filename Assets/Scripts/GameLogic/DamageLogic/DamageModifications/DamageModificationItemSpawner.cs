@@ -24,7 +24,7 @@ public class DamageModificationItemSpawner : ItemSpawner
         // Создаем объект модификации на сцене
         if (CanSpawn(spawnPoint))
         {
-            GameObject modifierObject = Spawn(spawnPoint, out ISpawnObject pickup);
+            GameObject modifierObject = Spawn(spawnPoint, out SpawnObject pickup);
             if (pickup != null)
             {
                 DamagePickup damagePickup = pickup as DamagePickup;

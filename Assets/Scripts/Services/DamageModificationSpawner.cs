@@ -13,7 +13,8 @@ public class DamageModificationSpawner : MonoBehaviour, IService
     public SpawnPoint[] dinamicSpawnPoints;        // Места, где могут появляться модификации
     public Transform DamageModificationPparent;
     public DamagePickup damagePickupPrefab;  // Префаб для спавна модификации
-    public SpawnPoint[] hardSpawnPoints; // Префаб для спавна модификации
+    public SpawnPoint[] hardSpawnPoints;
+    public ChooseOnePickup ChooseOnePickup;
     public DMS[] damageModificationsLists;  // Доступные модификации
     [System.Serializable]
     public class DMS
@@ -69,7 +70,12 @@ public class DamageModificationSpawner : MonoBehaviour, IService
         spawnPoint.Occupie(damagePickup);
         return damagePickup.gameObject;
     }
-    public GameObject Spawn(Transform where, out DamagePickup damagePickup, SpawnParametrs spawnParametrs = null)
+    public GameObject SpawnChooseOne(Transform where, SpawnParametrs spawnParametrs = null)
+    {
+        GameObject modifierObject = Instantiate(ChooseOnePickup.gameObject, where.position, Quaternion.identity, DamageModificationPparent);
+        return modifierObject;
+    }
+        public GameObject Spawn(Transform where, out DamagePickup damagePickup, SpawnParametrs spawnParametrs = null)
     {
         if(spawnParametrs!=null)
         {
@@ -81,6 +87,7 @@ public class DamageModificationSpawner : MonoBehaviour, IService
         }
         GameObject modifierObject = Instantiate(damagePickupPrefab.gameObject, where.position, Quaternion.identity, DamageModificationPparent);
         damagePickup = modifierObject.GetComponent<DamagePickup>();
+        damagePickup.SetDamageModification(GetDamageModification(Rarity.rare));
         return modifierObject;
     }
     private DamageModification GetDamageModification(SpawnPoint spawnPoint)

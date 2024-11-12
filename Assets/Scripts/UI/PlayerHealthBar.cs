@@ -2,9 +2,9 @@
 
 public class PlayerHealthBar : HealthBar
 {
-    protected override void Start()
+    protected override void Awake ()
     {
-        base.Start();
+        base.Awake();
         healthProgress.style.maxWidth = 320;
         healthProgress.style.width = 320;
     }

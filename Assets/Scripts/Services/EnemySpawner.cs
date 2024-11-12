@@ -12,24 +12,30 @@ public class EnemySpawner : MonoBehaviour, IService
     public CharacterCreator CharacterCreator;
     [SerializeField]
     public GameObject EnemysParent;
+    public float TotalHealth = 10f;
 
     // Метод, который будет вызываться для спавна каждого предмета
     public virtual void SpawnItem(SpawnPoint spawnPoint)
     {
-        Spawn(spawnPoint, out ISpawnObject itemObject);
+        Spawn(spawnPoint, out SpawnObject itemObject);
     }
-
+    public void StartSpawnDinamically()
+    {
+        InvokeRepeating(nameof(SpawnRandomItem), StartDelay, Interval);
+    }
     protected virtual void Start()
     {
         // Спавним на всех точках сразу
         foreach (var point in hardspawnPoints)
         {
-            SpawnItem(point);
+            if(point!=null)
+                SpawnItem(point);
         }
 
         if (spawnDinamically)
             InvokeRepeating(nameof(SpawnRandomItem), StartDelay, Interval);
     }
+    
 
     // Метод для динамического спавна
     public void SpawnRandomItem()
@@ -40,11 +46,11 @@ public class EnemySpawner : MonoBehaviour, IService
     }
 
     // Метод для спавна объекта на точке
-    public virtual GameObject Spawn(SpawnPoint spawnPoint, out ISpawnObject itemObject)
+    public virtual GameObject Spawn(SpawnPoint spawnPoint, out SpawnObject itemObject)
     {
         return Spawn(spawnPoint.transform, out itemObject);
     }
-    public virtual GameObject Spawn(Transform spawnPoint, out ISpawnObject itemObject, SpawnParametrs spawnParametrs = null)
+    public virtual GameObject Spawn(Transform spawnPoint, out SpawnObject itemObject, SpawnParametrs spawnParametrs = null)
     {
         if (spawnParametrs != null)
         {
@@ -55,8 +61,26 @@ public class EnemySpawner : MonoBehaviour, IService
             }
         }
         GameObject newCharacter = CharacterCreator.GetNewCharacter();
-       GameObject spawnedItem = Instantiate(newCharacter, spawnPoint.transform.position, Quaternion.identity, EnemysParent.transform);
-        itemObject = spawnedItem.GetComponent<ISpawnObject>();
+        HealthComponent healthComponent = newCharacter.GetComponent<HealthComponent>();
+        if (spawnDinamically)
+        {
+            Debug.Log("DinamicSpawn");
+            healthComponent.CurrentHealth = TotalHealth;
+            healthComponent.SetMaxHealth(TotalHealth);
+        }
+        GameObject spawnedItem = Instantiate(newCharacter,(Vector2) spawnPoint.transform.position, Quaternion.identity, EnemysParent.transform);
+        spawnedItem.gameObject.SetActive(true);
+        itemObject = spawnedItem.GetComponent<SpawnObject>();
         return spawnedItem;
+    }
+
+    internal float GetHealth()
+    {
+        return TotalHealth;
+    }
+
+    internal void IncreaseHealth(float totalHealth)
+    {
+        TotalHealth = totalHealth;
     }
 }

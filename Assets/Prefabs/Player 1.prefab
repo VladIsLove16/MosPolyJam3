@@ -79,9 +79,10 @@ MonoBehaviour:
   _componentsListDebug: []
   StartedDamageComponents:
   - {fileID: 11400000, guid: 834b0c51884459b45a7af318230aa619, type: 2}
+  StartedModificationList: []
   electric: {fileID: 11400000, guid: 834b0c51884459b45a7af318230aa619, type: 2}
   poison: {fileID: 11400000, guid: caf7fea4b0e91a54aa2d4f1a9486e6a3, type: 2}
-  phys: {fileID: 0}
+  phys: {fileID: 11400000, guid: ece280706e180134e87ec0fd409d6a08, type: 2}
 --- !u!1 &3240441107587946289
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: f90a4ddd21a0b794180790d1448712be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -182,11 +183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 1
-  radius: 1
+  radius: 0.12
   lookToTarget: 1
   rotateToTarget: 1
   Host: {fileID: 6169334920774797664}
-  weaponInfo: {fileID: 11400000, guid: eba843f51a3a0ca42b41d034041f62b5, type: 2}
+  weaponInfo: {fileID: 11400000, guid: 37017f7797c043b4593e758cd1881ec1, type: 2}
 --- !u!114 &3992452792871248690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,13 +213,14 @@ GameObject:
   - component: {fileID: 6169334920774797664}
   - component: {fileID: 7967614897095286175}
   - component: {fileID: 6545303100585164430}
-  - component: {fileID: 8095361873009479792}
   - component: {fileID: 2433872889297978662}
   - component: {fileID: 6333834195682016568}
   - component: {fileID: 349899915828419542}
   - component: {fileID: 8683687346335933815}
   - component: {fileID: 9128676446534519860}
   - component: {fileID: 4841154337441030450}
+  - component: {fileID: 6822809867980012064}
+  - component: {fileID: 3826158826694658414}
   m_Layer: 8
   m_Name: Player 1
   m_TagString: Untagged
@@ -284,22 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363900c6cbecd314982b2cc531f14630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8095361873009479792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3817916104403184279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 0
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!114 &2433872889297978662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +315,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  IsMoving: 0
+  oldMovement: 0
+  newMove: 1
+  agent: {fileID: 0}
+  isOnFloor: 0
 --- !u!114 &349899915828419542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,9 +334,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  invulnerabilityTime: 100000
+  invulnerabilityTime: 0.3
   GetHitParticleEffect: {fileID: 8683687346335933815}
   dead: 0
+  GetHitSound: 4
+  IsPlayer: 1
+  IsBoss: 0
 --- !u!114 &8683687346335933815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,8 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e478eaa77781e048ba2e99df66c7c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7366274166257470006, guid: 44d935956b26db24d9da68384282a6c9, type: 3}
-  poolSize: 10
+  prefab: {fileID: 4817588593709202484, guid: 3161c6a5763d9624fb650c27c8cec1c7, type: 3}
+  poolSize: 2
 --- !u!61 &4841154337441030450
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -420,6 +414,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.10003185, y: 0.19597626}
   m_EdgeRadius: 0
+--- !u!95 &6822809867980012064
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817916104403184279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74d35c8f5d2c20f4787b5afde52833c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &3826158826694658414
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817916104403184279}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &4657871014187523453
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +626,10 @@ PrefabInstance:
     - target: {fileID: 2937305129632671122, guid: 81272b078f5bceb4a92ea16a47ea5f87, type: 3}
       propertyPath: m_Name
       value: Dog (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754116579075550146, guid: 81272b078f5bceb4a92ea16a47ea5f87, type: 3}
+      propertyPath: m_SortingOrder
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 5973555741574038190, guid: 81272b078f5bceb4a92ea16a47ea5f87, type: 3}
       propertyPath: m_LocalPosition.x

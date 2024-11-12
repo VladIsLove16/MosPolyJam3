@@ -8,18 +8,17 @@ public class ElectricDamageComponent : DamageComponent
         damageType = DamageType.electic;
     }
     public float stunDuration;
-    public override void ApplyDamage(IDamageable damageable)
+    public override void ApplyDamage(IDamageable damageable, DamageParameters damageParameters)
     {
-        damageable.ApplyDamage(baseDamage);
+        base.ApplyDamage(damageable, damageParameters);
         if (damageable is IStunable stunable)
         {
             stunable.Stun(stunDuration);
+            SoundManager.PlaySound(SoundManager.Sound.ElecticDamage);
         }
     }
     public override void ResetStats()
     {
         base.ResetStats();
-        baseDamage = 2f;
-        stunDuration = 0.5f;
     }
 }

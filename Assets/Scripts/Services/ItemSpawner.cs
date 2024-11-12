@@ -14,7 +14,7 @@ public class ItemSpawner : MonoBehaviour, IService
     // Метод, который будет вызываться для спавна каждого предмета
     public virtual void SpawnItem(SpawnPoint spawnPoint)
     {
-        Spawn(spawnPoint, out ISpawnObject itemObject);
+        Spawn(spawnPoint, out SpawnObject itemObject);
     }
 
     protected virtual void Start()
@@ -38,11 +38,11 @@ public class ItemSpawner : MonoBehaviour, IService
     }
 
     // Метод для спавна объекта на точке
-    public virtual GameObject Spawn(SpawnPoint spawnPoint, out ISpawnObject itemObject)
+    public virtual GameObject Spawn(SpawnPoint spawnPoint, out SpawnObject itemObject)
     {
         return Spawn(spawnPoint.transform, out itemObject); 
     }
-    public virtual GameObject Spawn(Transform spawnPoint, out ISpawnObject itemObject, SpawnParametrs spawnParametrs = null)
+    public virtual GameObject Spawn(Transform spawnPoint, out SpawnObject itemObject, SpawnParametrs spawnParametrs = null)
     {
         if (spawnParametrs != null)
         {
@@ -53,7 +53,7 @@ public class ItemSpawner : MonoBehaviour, IService
             }
         }
         GameObject spawnedItem = Instantiate(itemPrefabs[Random.Range(0, itemPrefabs.Length)], spawnPoint.transform.position, Quaternion.identity);
-        itemObject = spawnedItem.GetComponent<ISpawnObject>();
+        itemObject = spawnedItem.GetComponent<SpawnObject>();
         return spawnedItem;
     }
 }

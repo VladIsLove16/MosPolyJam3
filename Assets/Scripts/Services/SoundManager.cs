@@ -26,8 +26,15 @@ public static class SoundManager {
         EnemyDie,
         EnemyMove,
         EnemyGetDamaged,
+        BossGetDamaged,
         ButtonOver,
         ButtonClick,
+        MilkUse,
+        CottonsUse,
+        RatUse,
+        DistortionSound,
+        PlayerDied,
+        ElecticDamage
     }
     public enum AudioGroup
     {
@@ -63,8 +70,12 @@ public static class SoundManager {
             audioSource.rolloffMode = AudioRolloffMode.Linear;
             audioSource.dopplerLevel = 0f;
             audioSource.Play();
-
-            Object.Destroy(soundGameObject, audioSource.clip.length);
+            if (audioSource.clip == null)
+            {
+                Object.Destroy(soundGameObject);
+            }
+            else
+                Object.Destroy(soundGameObject, audioSource.clip.length);
         }
     }
 

@@ -3,8 +3,9 @@
 public class EnemyWeapon : Weapon
 {
     Player  Player;
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         Player = ServiceLocator.Current.Get<Player>();
     }
     protected override void SetTarget()
