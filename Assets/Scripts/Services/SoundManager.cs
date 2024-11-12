@@ -34,7 +34,8 @@ public static class SoundManager {
         RatUse,
         DistortionSound,
         PlayerDied,
-        ElecticDamage
+        ElecticDamage,
+        pickup
     }
     public enum AudioGroup
     {

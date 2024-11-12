@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
     {
         _particleSystem = GetComponent<ParticleSystem>();
         emitter = GetComponent<Emitter>();
-        healthComponent = GetComponent<HealthComponent>();
+        healthComponent = GetComponentInParent<HealthComponent>();
         healthComponent.OnStun+=OnStun;
 
     }

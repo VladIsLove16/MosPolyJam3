@@ -79,7 +79,7 @@ public class DamageModificationSpawner : MonoBehaviour, IService
     {
         if(spawnParametrs!=null)
         {
-            if (spawnParametrs.chance < Random.Range(0, 100))
+            if (spawnParametrs.chance-10 > Random.Range(0, 100))
             {
                 damagePickup = null;
                 return null;
