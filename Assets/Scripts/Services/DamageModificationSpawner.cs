@@ -8,13 +8,14 @@ using Random = UnityEngine.Random;
 public class DamageModificationSpawner : MonoBehaviour, IService
 {
     public bool spawnDinamically = false;
+    public bool spawnByThree= false;
     public float Interval = 2f;
     public float StartDelay = 1f;
     public SpawnPoint[] dinamicSpawnPoints;        // Места, где могут появляться модификации
     public Transform DamageModificationPparent;
     public DamagePickup damagePickupPrefab;  // Префаб для спавна модификации
     public SpawnPoint[] hardSpawnPoints;
-    public ChooseOnePickup ChooseOnePickup;
+    public List<ChooseOnePickup> ChooseOnePickupList;
     public DMS[] damageModificationsLists;  // Доступные модификации
     [System.Serializable]
     public class DMS
@@ -34,9 +35,24 @@ public class DamageModificationSpawner : MonoBehaviour, IService
     // Метод для спавна модификации
     public void SpawnModifierRandomPlace()
     {
-        // Случайно выбираем точку спавна и модификацию
-        SpawnPoint spawnPoint = dinamicSpawnPoints[Random.Range(0, dinamicSpawnPoints.Length)];
-        SpawnModifier(spawnPoint);
+        if (spawnByThree)
+        {
+            SpawnChooseOne();
+        }
+        else
+        {
+            // Случайно выбираем точку спавна и модификацию
+            SpawnPoint spawnPoint = dinamicSpawnPoints[Random.Range(0, dinamicSpawnPoints.Length)];
+            SpawnModifier(spawnPoint);
+        }
+    }
+    public void SpawnChooseOne()
+    {
+        ChooseOnePickup pickup = ChooseOnePickupList[Random.Range(0, ChooseOnePickupList.Count)];
+        foreach (var sp in pickup.OthergameObjectPoints)
+        {
+            SpawnModifier(sp);
+        }
     }
     public void SpawnModifier(SpawnPoint spawnPoint)
     {
@@ -69,11 +85,6 @@ public class DamageModificationSpawner : MonoBehaviour, IService
         Spawn(spawnPoint.transform, out damagePickup);
         spawnPoint.Occupie(damagePickup);
         return damagePickup.gameObject;
-    }
-    public GameObject SpawnChooseOne(Transform where, SpawnParametrs spawnParametrs = null)
-    {
-        GameObject modifierObject = Instantiate(ChooseOnePickup.gameObject, where.position, Quaternion.identity, DamageModificationPparent);
-        return modifierObject;
     }
         public GameObject Spawn(Transform where, out DamagePickup damagePickup, SpawnParametrs spawnParametrs = null)
     {

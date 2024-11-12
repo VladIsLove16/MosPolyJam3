@@ -115,7 +115,7 @@ public class HealthComponent : MonoBehaviour, IDamageable, IStunable
     {
         if (GameSettings.EndlessMode)
         {
-            damageModificationSpawner.SpawnChooseOne(transform);
+            //damageModificationSpawner.SpawnChooseOne(transform);
         }
         else
         {

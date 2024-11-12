@@ -26307,6 +26307,10 @@ PrefabInstance:
       propertyPath: BulletParent
       value: 
       objectReference: {fileID: 804029107}
+    - target: {fileID: 7359016152182499552, guid: fda1e6ba081b843408681c8c24371931, type: 3}
+      propertyPath: StartedDamageComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7691029339521728899, guid: fda1e6ba081b843408681c8c24371931, type: 3}
       propertyPath: radius
       value: 0.2

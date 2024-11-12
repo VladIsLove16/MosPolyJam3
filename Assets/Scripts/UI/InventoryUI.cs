@@ -38,7 +38,7 @@ public class InventoryUI : MonoBehaviour
             UpdateItemLabel(itemType, inventory.GetItemAmount(itemType));
             index++;
         }
-
+        root.style.visibility = Visibility.Hidden;
     }
 
     private void CreateIconToItemDict()

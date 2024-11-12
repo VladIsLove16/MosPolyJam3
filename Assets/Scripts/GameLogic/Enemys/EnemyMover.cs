@@ -40,11 +40,8 @@ public void Move(Vector2 target, float speed)
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, 1);
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(target);
-
-            transform.position = new Vector3(transform.position.x, transform.position.y, 1);
             NavMeshAgent.speed = speed;
             if (Rigidbody2D.velocity.magnitude > 0)
             {

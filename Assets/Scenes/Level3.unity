@@ -2766,8 +2766,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnDinamically: 0
-  Interval: 5
-  StartDelay: 15
+  Interval: 4
+  StartDelay: 10
   dynamicspawnPoints:
   - {fileID: 1308726022}
   - {fileID: 1319988106}

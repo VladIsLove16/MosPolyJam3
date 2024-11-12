@@ -78,7 +78,9 @@ MonoBehaviour:
   _damageComponentsCount: 0
   _componentsListDebug: []
   StartedDamageComponents:
+  - {fileID: 11400000, guid: ece280706e180134e87ec0fd409d6a08, type: 2}
   - {fileID: 11400000, guid: 834b0c51884459b45a7af318230aa619, type: 2}
+  - {fileID: 11400000, guid: caf7fea4b0e91a54aa2d4f1a9486e6a3, type: 2}
   StartedModificationList: []
   electric: {fileID: 11400000, guid: 834b0c51884459b45a7af318230aa619, type: 2}
   poison: {fileID: 11400000, guid: caf7fea4b0e91a54aa2d4f1a9486e6a3, type: 2}

@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   sound: 1
   baseDamage: 5
-  bulletSpeed: 300
+  bulletSpeed: 600
   reloadTime: 8
   firerate: 0.2
   shotBulletAmount: 1
