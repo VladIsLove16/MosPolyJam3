@@ -74,7 +74,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Intensity: 0.08399121
-    - _Interval: 31.763588
+    - _Interval: 3.1355479
     - _MaxGlitchCount: 1
     - _Metallic: 0
     - _MinGlitchCount: 1

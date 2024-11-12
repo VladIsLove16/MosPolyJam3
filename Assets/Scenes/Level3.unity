@@ -13955,26 +13955,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3969386503866713357, guid: afbf78a00b2bdc3499ae2b6c9ab324b9, type: 3}
-      propertyPath: soundAudioClipArray.Array.size
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 3969386503866713357, guid: afbf78a00b2bdc3499ae2b6c9ab324b9, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[12].sound
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3969386503866713357, guid: afbf78a00b2bdc3499ae2b6c9ab324b9, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[13].sound
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3969386503866713357, guid: afbf78a00b2bdc3499ae2b6c9ab324b9, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[12].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: c24584e093db01c479d270dd222ef561, type: 3}
-    - target: {fileID: 3969386503866713357, guid: afbf78a00b2bdc3499ae2b6c9ab324b9, type: 3}
-      propertyPath: soundAudioClipArray.Array.data[13].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0c076835b1cbf2a4281f6ef0dbfdba2f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

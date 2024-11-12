@@ -24,6 +24,7 @@ public class DamagePickup : SpawnObject
             DamageApplier damageApplier = player.GetDamageApplier();
             damageModification.ApplyModification(damageApplier);
             Taken?.Invoke();
+            SoundManager.PlaySound(SoundManager.Sound.pickup);
             Destroy(gameObject);
         }
 

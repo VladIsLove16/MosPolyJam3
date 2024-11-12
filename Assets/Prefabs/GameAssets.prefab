@@ -69,6 +69,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: d28547efbd2a135489f0fca7e05c3e98, type: 3}
   - sound: 16
     audioClip: {fileID: 8300000, guid: 612f52dbfa2ba584ab7fa201f7e517f6, type: 3}
+  - sound: 9
+    audioClip: {fileID: 8300000, guid: c24584e093db01c479d270dd222ef561, type: 3}
+  - sound: 18
+    audioClip: {fileID: 8300000, guid: 0c076835b1cbf2a4281f6ef0dbfdba2f, type: 3}
   audioMixer: {fileID: 24100000, guid: 48a9d937faeba514e9d25282373a56e9, type: 2}
   SoundsAudioMixerGroup: {fileID: 1212793652476160539, guid: 48a9d937faeba514e9d25282373a56e9, type: 2}
   MusicAudioMixer: {fileID: -4281145290781020328, guid: 48a9d937faeba514e9d25282373a56e9, type: 2}
