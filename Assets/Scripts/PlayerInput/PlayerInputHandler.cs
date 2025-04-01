@@ -7,23 +7,29 @@ public class PlayerInputHandler : MonoBehaviour
 {
     public Vector2 MoveInput { get; private set; } // Экспонируем направление движения для других компонентов
 
-    private PlayerInputActions playerInput;
+    private PlayerInputActions _playerInput;
+    private PlayerInputActions PlayerInput { get
+        {
+            if(_playerInput == null)
+                _playerInput = new PlayerInputActions();
+            return _playerInput;
+        } 
+    }
     public Inventory inventory;
     Player Player;
 
     private Dictionary<InputAction, InventoryItemType> itemMappings = new();
     private void Awake()
     {
-        playerInput = new PlayerInputActions();
         inventory = ServiceLocator.Current.Get<Inventory>();
         Player = ServiceLocator .Current.Get<Player>();
 
         itemMappings = new Dictionary<InputAction, InventoryItemType>//здесь есть небольшая затычка с тем, что по первой кнопке
                                                                      //должен использоватся предмет, который лежит в первом слоте UI
         {
-            { playerInput.Player.UseItem1, InventoryItemType.cottons },
-            { playerInput.Player.UseItem2, InventoryItemType.milk },
-            { playerInput.Player.UseItem3, InventoryItemType.rat }
+            { PlayerInput.Player.UseItem1, InventoryItemType.cottons },
+            { PlayerInput.Player.UseItem2, InventoryItemType.milk },
+            { PlayerInput.Player.UseItem3, InventoryItemType.rat }
         };
     }
     private void Update()
@@ -31,15 +37,15 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void OnEnable()
     {
-        playerInput.Player.Enable();
-        playerInput.Player.Move.performed += OnMove;
-        playerInput.Player.Move.canceled += OnMove;
+        PlayerInput.Player.Enable();
+        PlayerInput.Player.Move.performed += OnMove;
+        PlayerInput.Player.Move.canceled += OnMove;
         foreach (var action in itemMappings.Keys)
         {
             action.performed += UseItem;
         }
-        playerInput.Player.Shoot.performed += Shoot ;
-        playerInput.Player.Shooting.performed += Shoot;
+        PlayerInput.Player.Shoot.performed += Shoot ;
+        PlayerInput.Player.Shooting.performed += Shoot;
     }
 
     private void Shoot(InputAction.CallbackContext context)
@@ -58,9 +64,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnDisable()
     {
-        playerInput.Player.Move.performed -= OnMove;
-        playerInput.Player.Move.canceled -= OnMove;
-        playerInput.Player.Disable();
+        PlayerInput.Player.Move.performed -= OnMove;
+        PlayerInput.Player.Move.canceled -= OnMove;
+        PlayerInput.Player.Disable();
     }
 
     private void OnMove(InputAction.CallbackContext context)

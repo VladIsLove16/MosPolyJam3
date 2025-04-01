@@ -21,17 +21,17 @@ public class CharacterCreator : MonoBehaviour
         SpriteRenderer armsspriteRenderer = armsPrefab.GetComponent<SpriteRenderer>();
         SpriteRenderer legsspriteRenderer = legsPrefab.GetComponent<SpriteRenderer>();
 
-        headspriteRenderer.sprite = GetRandomElement(heads);
-        bodyspriteRenderer.sprite = GetRandomElement(bodys);
-        armsspriteRenderer.sprite = GetRandomElement(arms);
-        legsspriteRenderer.sprite = GetRandomElement(legs);
+        headspriteRenderer.sprite = GetRandomElementFromList(heads);
+        bodyspriteRenderer.sprite = GetRandomElementFromList(bodys);
+        armsspriteRenderer.sprite = GetRandomElementFromList(arms);
+        legsspriteRenderer.sprite = GetRandomElementFromList(legs);
     }
     public GameObject GetNewCharacter()
     {
         CreateCharacter();
         return parent;
     }
-    private T GetRandomElement<T>(List<T> list)
+    private T GetRandomElementFromList<T>(List<T> list)
     {
         if (list == null || list.Count == 0)
         {

@@ -36,7 +36,7 @@
                     "name": "UseItem3",
                     "type": "Button",
                     "id": "d7b4464e-3c5a-4320-961f-f58f6352ad40",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -45,7 +45,7 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "7a214989-a411-460d-9727-d65d8e3fd3cb",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+/// <summary>
+/// Хранит все модификации урона и считает итоговый урон
+/// </summary>
 public class DamageComponent : ScriptableObject
 {
     public Sprite Sprite;
@@ -13,6 +16,11 @@ public class DamageComponent : ScriptableObject
     EventBus eventBus;
     public DamageComponent()
     {
+        CalculateDamage();
+    }
+    public DamageComponent(DamageType damageType) 
+    { 
+        this.damageType = damageType; 
         CalculateDamage();
     }
     private void Awake()
@@ -40,7 +48,6 @@ public class DamageComponent : ScriptableObject
         CalculateDamage();
     }
 
-    public DamageComponent(DamageType damageType) { this.damageType = damageType; CalculateDamage(); }
 
     public float CalculateDamage()
     {

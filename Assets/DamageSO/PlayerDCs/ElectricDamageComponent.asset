@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb077d157d3470443bde45137695959f, type: 3}
+  m_Name: ElectricDamageComponent
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: -1287721471637825022, guid: 9092097022f087f4c8297d0e57297e44, type: 3}
+  baseDamage: 1
+  damageType: 2
+  CalculatedDamage: 0
+  stunDuration: 0

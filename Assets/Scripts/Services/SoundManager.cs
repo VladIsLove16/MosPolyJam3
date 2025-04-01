@@ -13,6 +13,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static SoundManager;
 
 public static class SoundManager {
 
@@ -65,6 +66,7 @@ public static class SoundManager {
             GameObject soundGameObject = new GameObject("Sound");
             soundGameObject.transform.position = position;
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.outputAudioMixerGroup = GetAudioMixerGroup(AudioGroup.sounds);
             audioSource.clip = GetAudioClip(sound);
             audioSource.maxDistance = 100f;
             audioSource.spatialBlend = 1f;

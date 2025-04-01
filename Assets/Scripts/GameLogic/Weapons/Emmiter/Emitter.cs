@@ -24,6 +24,7 @@ public class Emitter : MonoBehaviour
         direction = -spawnPoint.right.normalized; // Ensure the bullet is always emitted in the weapon's facing direction.
 
         GameObject bulletGO = Instantiate(pf, from, rotation, parent);
+        Debug.Log("Bulltet Instantiated and emmited");
         Bullet bullet = bulletGO.GetOrAddComponent<Bullet>();
         bullet.Init(direction, weaponInfo);
 

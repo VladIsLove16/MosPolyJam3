@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cccea194f478342a628947d66b02db, type: 3}
+  m_Name: PhysicalDamageComponent
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 4753806631897844665, guid: 67fb39db80d678e4481d159cc36c9010, type: 3}
+  baseDamage: 1
+  damageType: 0
+  CalculatedDamage: 0

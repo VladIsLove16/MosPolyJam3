@@ -37,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private void OldMovement()
     {
         Vector2 moveDirection = inputHandler.MoveInput;
-        rb.velocity = moveDirection * moveSpeed;
-        if (rb.velocity.magnitude > 0)
+        rb.linearVelocity = moveDirection * moveSpeed;
+        if (rb.linearVelocity.magnitude > 0)
         {
             IsMoving = true;
             SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
@@ -59,11 +59,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 moveDirection = inputHandler.MoveInput;
             Vector2 movement = moveDirection * moveSpeed;
-            rb.velocity = movement;
+            rb.linearVelocity = movement;
         }
         else
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             IsMoving = false;// Останавливаем движение внутри выреза
         }
     }

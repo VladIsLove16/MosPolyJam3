@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using UnityEngine;
-
+[RequireComponent(typeof(Animator))]
 public class LocationLag : MonoBehaviour
 {
     private Animator animator;

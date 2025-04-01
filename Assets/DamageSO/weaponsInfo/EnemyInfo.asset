@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d88dbab63d37345b35f00325f73e7c, type: 3}
+  m_Name: EnemyInfo
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -8107883690674795061, guid: f67c6a6280cab654aa1c1f08f297fc08, type: 3}
+  sound: 0
+  baseDamage: 2
+  bulletSpeed: 500
+  reloadTime: 1
+  firerate: 1
+  shotBulletAmount: 5
+  bulletsInShop: 5
+  shootRadius: 6.74
+  ScreenEdgeDestroy: 0
+  lifetime: 5
+  LifeTimeDestroy: 1

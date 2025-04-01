@@ -30,7 +30,7 @@ public class GameUI : MonoBehaviour
         damageStatistic = new(root.Q("DamageStatistic"));
         Debug.Log("damageStatistic + " + damageStatistic.IsUnityNull() + damageComponents.Count);
         damageStatistic.Init(damageComponents);
-        Player.GetDamageApplier().DamageComponentUpdate += damageStatistic.OnAddDamageComponent;
+        Player.GetDamageApplier().DamageComponentUpdated += damageStatistic.OnAddDamageComponent;
         weapon = Player.GetWeapon();
         weapon.ammoChanged += OnAmmoChanged;
 
@@ -41,6 +41,7 @@ public class GameUI : MonoBehaviour
         HealthComponent = Player.GetComponent<HealthComponent>();
         HealthComponent.healthChanged += UpdateHealthBar;
         healthProgress = bottomPanel.Q("HealthBar").Q("healthProgress") as ProgressBar;
+
         Score = root.Q<Label>("Score");
         scoreManager = ServiceLocator.Current.Get<ScoreManager>();
         scoreManager.OnScoreChanged += (int score) => Score.text = score.ToString();
@@ -48,7 +49,7 @@ public class GameUI : MonoBehaviour
         GameOverLabel = root.Q<Label>("GameOverLabel");
         repeatButton = GameOverLabel.Q<Button>("repeatButton");
         home = GameOverLabel.Q<Button>("home");
-        repeatButton.clicked += () => SceneLoader.Load(SceneLoader.Scene.Level4);
+        repeatButton.clicked += () => SceneLoader.Load(SceneLoader.Scene.EndlessMode);
         home.clicked += () => SceneLoader.Load(SceneLoader.Scene.MainMenu);
         ServiceLocator.Current.Get<EventBus>().Subscribe<GameOver>(OnGameOver);
         ServiceLocator.Current.Get<EventBus>().Subscribe<GameWon>(OnGameWon);

@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     private bool destroyBullet = false;
     private Animator anim;
     WeaponInfo weaponInfo;
+    [SerializeField] LayerMask DestrtroyingMask;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -53,7 +54,13 @@ public class Bullet : MonoBehaviour
             }
         }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((DestrtroyingMask.value & (1 << collision.gameObject.layer)) != 0)
+        {
+           Destroy(gameObject) ;
+        }
+    }
     public void ChangeDirection(Vector3 vector)
     {
         Direction = vector;
@@ -68,5 +75,5 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
 }

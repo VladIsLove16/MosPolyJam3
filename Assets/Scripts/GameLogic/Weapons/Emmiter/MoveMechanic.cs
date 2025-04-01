@@ -22,10 +22,10 @@ public class MoveMechanic
     public bool FixedUpdate()
     {
         Vector2 movementForce = movementVector * movementSpeed;
-        rigidbody2D.velocity = movementForce * Time.fixedDeltaTime;
+        rigidbody2D.linearVelocity = movementForce * Time.fixedDeltaTime;
 
         // Track distance and check against maxDistance
-        DistanceTraveled += rigidbody2D.velocity.magnitude * Time.fixedDeltaTime;
+        DistanceTraveled += rigidbody2D.linearVelocity.magnitude * Time.fixedDeltaTime;
         return DistanceTraveled >= maxDistance;
     }
 

@@ -14,10 +14,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] bool rotateToTarget;
     protected Emitter emitter;
     protected Vector2 target;
-    [SerializeField]
-    Transform Host;
-    [SerializeField]
-    protected WeaponInfo weaponInfo;
+    [SerializeField] Transform Host;
+    [SerializeField]  protected WeaponInfo weaponInfo;
     public Action ammoChanged;
 
     HealthComponent healthComponent;
@@ -101,8 +99,9 @@ public class Weapon : MonoBehaviour
 
     public virtual void Shoot()
     {
+        Debug.Log("Shoot");
         // Check if the weapon is reloading or if the fire rate limit is active
-        if (isReloading || Time.time - lastFireTime < weaponInfo.firerate || currentAmmo <= 0)
+        if (ReloadingOrShotIntervalOrEmpty())
             return;
 
         // Update the time of the last shot and reduce ammo
@@ -111,7 +110,7 @@ public class Weapon : MonoBehaviour
         ammoChanged?.Invoke();
         // Play sound and particle effects
         SoundManager.PlaySound(weaponInfo.sound);
-        if(_particleSystem!=null)
+        if (_particleSystem != null)
             _particleSystem.Play();
 
         // Emit projectiles
@@ -122,6 +121,11 @@ public class Weapon : MonoBehaviour
         {
             StartCoroutine(Reload());
         }
+    }
+
+    private bool ReloadingOrShotIntervalOrEmpty()
+    {
+        return isReloading || Time.time - lastFireTime < weaponInfo.firerate || currentAmmo <= 0;
     }
 
     protected IEnumerator Reload()

@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f3246798b452c48af846ac05fd9807, type: 3}
+  m_Script: {fileID: 11500000, guid: 73d88dbab63d37345b35f00325f73e7c, type: 3}
   m_Name: BOSSWEAPON
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  sound: 1
-  baseDamage: 5
-  bulletSpeed: 600
-  reloadTime: 8
-  firerate: 0.2
+  sprite: {fileID: 8817603536085994761, guid: 2d0902e59aa647f49a7333756ba54ce3, type: 3}
+  sound: 5
+  baseDamage: 1
+  bulletSpeed: 1
+  reloadTime: 1
+  firerate: 1
   shotBulletAmount: 1
-  bulletsInShop: 15
-  shootRadius: 30
+  bulletsInShop: 1
+  shootRadius: 1
   ScreenEdgeDestroy: 0
-  lifetime: 2
+  lifetime: 5
   LifeTimeDestroy: 1

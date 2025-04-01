@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(HealthComponent))]
 public class Player : MonoBehaviour , IService
 {
-    [SerializeField]
-    private DamageApplier damageApplier;
+    [SerializeField] private DamageApplier damageApplier;
     private Emitter emitter;
-    [SerializeField]
-    private List<Weapon> Weapons;
+    [SerializeField] private List<Weapon> Weapons;
     Weapon currentWeapon;
     Inventory inventory;
     InventoryFabric inventoryFabric;
@@ -27,12 +28,20 @@ public class Player : MonoBehaviour , IService
         healthComponent.died += OnDie;
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        if (SceneLoader.CurrentScene == SceneLoader.Scene.Level1 || SceneLoader.CurrentScene == SceneLoader.Scene.Level4)
+        if (SceneLoader.CurrentScene == SceneLoader.Scene.Level1 || SceneLoader.CurrentScene == SceneLoader.Scene.EndlessMode)
         {
-            damageApplier.electric.ResetStats();
-            damageApplier.poison.ResetStats();
-            damageApplier.phys.ResetStats();
+            ResetStats();
         }
+    }
+    private void Update()
+    {
+        animator.SetBool("Moving", playerMovement.IsMoving);
+    }
+    public void ResetStats()
+    {
+        damageApplier.electric.ResetStats();
+        damageApplier.poison.ResetStats();
+        damageApplier.phys.ResetStats();
     }
 
     private void OnDie()
@@ -43,10 +52,6 @@ public class Player : MonoBehaviour , IService
         Time.timeScale = 0;
     }
 
-    private void Update()
-    {
-        animator.SetBool("Moving", playerMovement.IsMoving);
-    }
     internal Inventory GetInventory()
     {
         return inventory;

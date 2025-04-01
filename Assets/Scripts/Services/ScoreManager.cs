@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour, IService
         ServiceLocator.Current.Get<EventBus>().Subscribe<SceneChanged>(OnSceneChange);
         switch (SceneLoader.CurrentScene)
         {
-            case SceneLoader.Scene.Level4:
+            case SceneLoader.Scene.EndlessMode:
                 SetScore(0);
                 break;
             case SceneLoader.Scene.Level2:
@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour, IService
     {
         switch (changed.scene)
         {
-            case SceneLoader.Scene.Level4:
+            case SceneLoader.Scene.EndlessMode:
                 PlayerPrefs.SetInt("Level1Score", Score);
                 break;
             case SceneLoader.Scene.Level2:

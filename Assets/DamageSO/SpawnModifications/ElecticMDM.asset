@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43337267c3c5229418fb7faebb00abd8, type: 3}
+  m_Script: {fileID: 11500000, guid: e933e58e3a98e414595fff37e2617e35, type: 3}
   m_Name: ElecticMDM
   m_EditorClassIdentifier: 
-  modifiers:
-  - modifierType: 1
-    modifierAmount: 1.1
-    damageType: 2
-  rarity: 0
-  spawnChance: 0

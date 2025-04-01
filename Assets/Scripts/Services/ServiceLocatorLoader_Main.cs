@@ -38,7 +38,7 @@ public class ServiceLocatorLoader_Main : MonoBehaviour
     {
         ServiceLocator.Initialize();
         //c#
-        //порядок важен пизда
+        //порядок важен
         ServiceLocator.Current.Register(InventoryFabric);
         ServiceLocator.Current.Register(inventory);
 

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &533104161233457819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2198849896174349789}
+  - component: {fileID: 3969386503866713357}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2198849896174349789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533104161233457819}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.241457, y: 0.51739883, z: -0.0673997}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3969386503866713357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533104161233457819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706bee7f210b88249b58041ff4e5ddd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundAudioClipArray:
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: 2d917b9fb7988044882c1c7fa7bff66f, type: 3}
+  - sound: 3
+    audioClip: {fileID: 8300000, guid: 0a68da5c31d5f464a919af12df6ec5bc, type: 3}
+  - sound: 4
+    audioClip: {fileID: 8300000, guid: 4deb3dbc654171d44ba86df53349a76f, type: 3}
+  - sound: 8
+    audioClip: {fileID: 8300000, guid: 4deb3dbc654171d44ba86df53349a76f, type: 3}
+  - sound: 16
+    audioClip: {fileID: 8300000, guid: 279b6cbcb93483340900b1514e5d604f, type: 3}
+  - sound: 6
+    audioClip: {fileID: 8300000, guid: 065793684edec7b4ab23a9f3e60b854c, type: 3}
+  SoundsAudioMixerGroup: {fileID: 1212793652476160539, guid: df3c3cc48c7b50642b0b8589f9035842, type: 2}
+  MusicAudioMixer: {fileID: -4281145290781020328, guid: df3c3cc48c7b50642b0b8589f9035842, type: 2}
+  GlobalAudioMixer: {fileID: 24300002, guid: df3c3cc48c7b50642b0b8589f9035842, type: 2}

@@ -36,14 +36,14 @@ public void Move(Vector2 target, float speed)
     {
         if (stunned)
         {
-            Rigidbody2D.velocity = Vector2.zero;
+            Rigidbody2D.linearVelocity = Vector2.zero;
         }
         else
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(target);
             NavMeshAgent.speed = speed;
-            if (Rigidbody2D.velocity.magnitude > 0)
+            if (Rigidbody2D.linearVelocity.magnitude > 0)
             {
                 SoundManager.PlaySound(SoundManager.Sound.EnemyMove, transform.position);
             }

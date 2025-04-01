@@ -11,7 +11,7 @@ public static class SceneLoader
         Level1,
         Level2,
         Level3,
-        Level4,
+        EndlessMode,
         Loading,
         MainMenu,
     }
@@ -25,7 +25,7 @@ public static class SceneLoader
             loadingGO.AddComponent<LoadingMonoBehaviour>().StartCoroutine(LoadSceneAsync(scene));
             
         };
-        if (scene == Scene.Level4)
+        if (scene == Scene.EndlessMode)
         {
             GameSettings.EndlessMode = true;
         }

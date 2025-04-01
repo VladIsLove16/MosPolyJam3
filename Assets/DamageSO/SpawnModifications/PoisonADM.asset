@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43337267c3c5229418fb7faebb00abd8, type: 3}
+  m_Script: {fileID: 11500000, guid: da3ca68a9979608469f0cb524bd4cbf9, type: 3}
   m_Name: PoisonADM
   m_EditorClassIdentifier: 
-  modifiers:
-  - modifierType: 0
-    modifierAmount: 1.01
-    damageType: 1
-  rarity: 0
-  spawnChance: 0

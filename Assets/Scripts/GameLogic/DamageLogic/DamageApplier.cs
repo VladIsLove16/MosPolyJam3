@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Unity.VisualScripting;
-
+/// <summary>
+/// Применяет урон компонентов к врагу.
+/// </summary>
 public class DamageApplier : MonoBehaviour
 {
     public Dictionary<DamageType, DamageComponent> _damageComponents = new();
     public int _damageComponentsCount;
-    [SerializeField ]
-    List<DamageComponent> _componentsListDebug = new List<DamageComponent>();
-    [SerializeField ]
-    List<DamageComponent> StartedDamageComponents = new List<DamageComponent>();
-    public Action<DamageComponent> DamageComponentUpdate;
+    [SerializeField]List<DamageComponent> _componentsListDebug = new List<DamageComponent>();
+    [SerializeField]List<DamageComponent> StartedDamageComponents = new List<DamageComponent>();
+    public Action<DamageComponent> DamageComponentUpdated;
     public List<DamageModification> StartedModificationList;
-    [SerializeField]
-    public ElectricDamageComponent electric;
-    [SerializeField]
-    public PoisonDamageComponent poison;
-    [SerializeField]
-    public PhysicalDamageComponent phys;
+    [SerializeField]public ElectricDamageComponent electric;
+    [SerializeField]public PoisonDamageComponent poison;
+    [SerializeField] public PhysicalDamageComponent phys;
     private void Awake()
     {
         foreach(var damageComponent in StartedDamageComponents)
@@ -86,7 +83,7 @@ public class DamageApplier : MonoBehaviour
     private void AddDamageComponent(DamageComponent damageComponent)
     {
         _damageComponents.Add(damageComponent.damageType, damageComponent);
-        DamageComponentUpdate?.Invoke(damageComponent);
+        DamageComponentUpdated?.Invoke(damageComponent);
         Debug.Log("(_damageComponents.added" + damageComponent.damageType.ToString());
         _componentsListDebug.Add(damageComponent);
     }

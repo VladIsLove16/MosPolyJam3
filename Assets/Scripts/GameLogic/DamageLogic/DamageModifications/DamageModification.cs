@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Модификация оружия, содержащая множество модификаторов урона
+/// </summary>
 [CreateAssetMenu(fileName = "DamageModification", menuName = "Damage/DamageModification")]
 public class DamageModification : ScriptableObject
 {
-    public List<Modifier> modifiers = new List<Modifier>();
+    /// <summary>
+    /// Модификатор урона оружия
+    /// </summary>
     [System.Serializable]
     public class Modifier
     {
@@ -12,6 +16,7 @@ public class DamageModification : ScriptableObject
         public float modifierAmount;
         public DamageType damageType;
     }
+    public List<Modifier> modifiers = new List<Modifier>();
     public Rarity rarity;
     public float spawnChance; // Вероятность появления модификации
     public void ApplyModification(DamageApplier weapon)

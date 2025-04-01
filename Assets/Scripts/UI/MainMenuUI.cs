@@ -102,7 +102,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnEndlessModeClicked()
     {
-        SceneLoader.Load(SceneLoader.Scene.Level4);
+        SceneLoader.Load(SceneLoader.Scene.EndlessMode);
     }
 
     private static void OnExitClicked()

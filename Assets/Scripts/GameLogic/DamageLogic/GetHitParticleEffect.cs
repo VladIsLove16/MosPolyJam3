@@ -16,7 +16,7 @@ public class GetHitParticleEffect : MonoBehaviour
         if (bulletRb != null)
         {
             // Направление частиц будет противоположно направлению полёта пули
-            Vector3 incomingDirection = bulletRb.velocity.normalized;
+            Vector3 incomingDirection = bulletRb.linearVelocity.normalized;
 
             // Получаем объект пара из пула
             GameObject steamEffect = steamPool.GetFromPool();

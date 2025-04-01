@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UIElements;
-
+[RequireComponent(typeof(UIDocument))]
 public class HealthBar : MonoBehaviour
 {
     protected VisualElement root;
     protected ProgressBar healthProgress;
     VisualElement healthProgressBar;
-    protected HealthComponent healthComponent;
-    [SerializeField]
+    [SerializeField] protected HealthComponent healthComponent;
     float width;
     [SerializeField]
     float offset;
@@ -21,7 +20,6 @@ public class HealthBar : MonoBehaviour
         healthProgress = root.Q<ProgressBar>("healthProgress");
         healthProgressBar = healthProgress.Q<VisualElement>("unity-progress-bar");
 
-        healthComponent = GetComponent<HealthComponent>();
         healthComponent.healthChanged += () => { UpdateHealthBarProgress(); };
         Debug.Log("HealthBar" + name + "created");
     }
